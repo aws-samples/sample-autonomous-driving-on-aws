@@ -1,0 +1,4 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+Each sample in this repository lists the third-party components it downloads at build or run time
+in its own NOTICE file (for example, cosmos-curate-on-eks/NOTICE).

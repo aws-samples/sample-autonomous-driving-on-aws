@@ -1,0 +1,80 @@
+# syntax=docker/dockerfile:1
+# CPU-only Cosmos Curate image (split + Cosmos-Embed1 embeddings; captions via an
+# OpenAI-compatible endpoint). Ubuntu 24.04 + pixi envs, CPU patches from patch_cpu.py,
+# no CUDA base. Model weights are NOT baked in; they are synced to /config/models at runtime.
+FROM ubuntu:24.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG PIXI_VERSION=v0.81.0
+ARG CURATE_REPO=https://github.com/nvidia-cosmos/cosmos-curate.git
+ARG CURATE_REF=b064a68e39962ea80c1ae33fc021f89c30fe59cb
+# Upstream code dir; the Helm chart and onto_nvcf.py hardcode it.
+ARG CODE_DIR=/opt/cosmos-curator
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates curl git ffmpeg rclone unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscli.zip \
+    && unzip -q /tmp/awscli.zip -d /tmp && /tmp/aws/install && rm -rf /tmp/aws /tmp/awscli.zip
+
+RUN curl -fsSL https://pixi.sh/install.sh | PIXI_VERSION="${PIXI_VERSION}" PIXI_HOME=/opt/pixi PIXI_NO_PATH_UPDATE=1 sh \
+    && ln -s /opt/pixi/bin/pixi /usr/local/bin/pixi
+
+RUN git clone -q --recursive "${CURATE_REPO}" "${CODE_DIR}" \
+    && git -C "${CODE_DIR}" checkout -q "${CURATE_REF}" \
+    && git -C "${CODE_DIR}" submodule update -q --init --recursive \
+    && chown -R 1000:1000 "${CODE_DIR}"
+# The Helm chart runs pods as uid/gid 1000. Like upstream, source is 1000-owned and
+# the pixi envs (installed below as root) stay root-owned and read-only.
+
+WORKDIR ${CODE_DIR}
+
+# CONDA_OVERRIDE_CUDA lets the CUDA-pinned lock solve on a host without a GPU.
+# Single layer + cache clean keeps rattler hardlinks shared between envs.
+# model-download: the per-node weight downloader actor runs in it (model_utils.py).
+# legacy-transformers: Cosmos-Embed1 / InternVideo2 stages run only in it (transformers 4.55.4).
+RUN export CONDA_OVERRIDE_CUDA=13.0.3 \
+    && for attempt in {1..5}; do \
+         pixi install -e default -e dev -e model-download -e legacy-transformers --frozen && break; \
+         echo "pixi install attempt ${attempt} failed, retrying"; sleep 5; \
+       done \
+    && pixi run --as-is -e default python -c "import torch, cv2, av; print(torch.__version__, cv2.__version__, av.__version__)" \
+    && pixi clean cache -y
+
+COPY patch_cpu.py /tmp/patch_cpu.py
+RUN pixi run --as-is -e default python /tmp/patch_cpu.py "${CODE_DIR}"
+
+RUN mkdir -p /config/models /config/tmp /cosmos_curator/config \
+    && echo '{}' > /cosmos_curator/config/cosmos_curator.yaml \
+    && printf '[default]\n' > /cosmos_curator/config/s3_profile \
+    && chown -R 1000:1000 /config /cosmos_curator "${CODE_DIR}/cosmos_curator/models/transnetv2.py" "${CODE_DIR}/cosmos_curator/models/cosmos_embed1.py" "${CODE_DIR}/cosmos_curator/pipelines/video/embedding/cosmos_embed1_stages.py" \
+    && cp package/cosmos_curator/entrypoint.sh /usr/local/bin/cosmos-curator-entrypoint \
+    && chmod 755 /usr/local/bin/cosmos-curator-entrypoint
+
+# Key-less S3 profile: Curate refuses to build an S3 client without a profile file
+# (s3_client.get_s3_client_config), but with no keys in it boto3 uses its default
+# chain, i.e. IRSA / Pod Identity / instance role. Region comes from AWS_REGION.
+ENV PATH=/opt/cosmos-curator/.pixi/envs/dev/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    PYTHONPATH=${CODE_DIR} \
+    COSMOS_S3_PROFILE_PATH=/cosmos_curator/config/s3_profile \
+    COSMOS_CURATOR_CODE_DIR=${CODE_DIR} \
+    CONDA_OVERRIDE_CUDA=13.0.3 \
+    AM_I_DOCKER=True \
+    RAY_DEDUP_LOGS=0 \
+    RAY_MAX_LIMIT_FROM_API_SERVER=40000 \
+    RAY_MAX_LIMIT_FROM_DATA_SOURCE=40000 \
+    RAY_DEFAULT_OBJECT_STORE_MEMORY_PROPORTION=0.4 \
+    RAY_gcs_rpc_server_connect_timeout_s=30 \
+    RAY_gcs_rpc_server_reconnect_timeout_s=180 \
+    RAY_WARN_BLOCKING_GET_INSIDE_ASYNC=0 \
+    XENNA_RAY_METRICS_PORT=9002 \
+    AWS_REQUEST_CHECKSUM_CALCULATION=when_required \
+    DEFAULT_WORKSPACE_LOC=/config/default_workspace
+
+USER 1000:1000
+
+ENTRYPOINT ["/usr/local/bin/cosmos-curator-entrypoint"]
+CMD ["pixi", "run", "--as-is", "-e", "dev", "python", "-m", "cosmos_curator.pipelines.video.run_pipeline", "--help"]

@@ -1,0 +1,24 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+This sample does not vendor third-party code or model weights. The components
+below are downloaded at build time or run time from their original sources and
+are governed by their own licenses.
+
+Fetched when the container image is built:
+- NVIDIA Cosmos Curate (https://github.com/nvidia-cosmos/cosmos-curate),
+  Apache License 2.0. Cloned at a pinned commit and patched for CPU execution
+  by docker/patch_cpu.py.
+- Python and system packages installed by the Cosmos Curate pixi environments
+  and the Ubuntu base image (for example Ray, PyTorch, FFmpeg), each under its
+  own license.
+- Strands Agents (https://pypi.org/project/strands-agents/), Apache License 2.0,
+  used by the caption proxy.
+
+Model weights downloaded from Hugging Face at run time (bootstrap/seed_models.sh):
+- TransNetV2 (Sn4kehead/TransNetV2), Apache License 2.0;
+  original project soCzech/TransNetV2, MIT License.
+- Aesthetic predictor head (ttj/sac-logos-ava1-l14-linearMSE), Apache License 2.0.
+- CLIP ViT-L/14 (openai/clip-vit-large-patch14), MIT License (openai/CLIP).
+- Cosmos-Embed1-336p (nvidia/Cosmos-Embed1-336p), NVIDIA Open Model License.
+
+Review each license before using these components in your own environment.

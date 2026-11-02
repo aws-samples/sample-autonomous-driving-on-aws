@@ -1,11 +1,15 @@
-## My Project
+# Autonomous Driving on AWS
 
-TODO: Fill this README out!
+Samples for building autonomous driving and Physical AI data pipelines on AWS.
+Each sample lives in its own folder with its own README, deployment steps, and NOTICE.
 
-Be sure to:
+[한국어](README.ko.md)
 
-* Change the title in this README
-* Edit your repository description on GitHub
+## Samples
+
+| Sample | Description |
+|---|---|
+| [cosmos-curate-on-eks](cosmos-curate-on-eks/) | Run the NVIDIA Cosmos Curate video curation pipeline (split, filter, embed, caption) on Amazon EKS CPU nodes without GPU instances. Captions come from Claude on Amazon Bedrock; embeddings are searchable in Amazon OpenSearch Serverless. |
 
 ## Security
 
@@ -13,5 +17,4 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 ## License
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
-
+This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.

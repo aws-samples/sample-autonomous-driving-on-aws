@@ -1,0 +1,11 @@
+You are viewing a ~5-second video clip. Describe what happens in this clip focusing on the key changes and events.
+
+First state the SCENE CONTEXT: time of day (day/night/dawn/dusk), weather (clear/rain/snow/fog), environment type (urban/highway/indoor/outdoor/residential).
+
+Then describe the CHANGES over this window, focusing on:
+1. Camera/ego motion: static, panning, moving forward/backward, turning, zooming.
+2. Moving objects: vehicles, people, animals - their positions and movements.
+3. Interactions: people talking, vehicles merging, objects being manipulated.
+4. Notable events: anything significant that happens during these 5 seconds.
+
+Emphasize what moved, stopped, appeared, or disappeared during this clip. Keep the scene context brief at the start.

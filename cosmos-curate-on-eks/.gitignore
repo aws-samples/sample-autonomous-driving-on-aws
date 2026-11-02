@@ -1,0 +1,9 @@
+# Local environment and caches
+.env.local
+*.env
+__pycache__/
+.cache/
+
+# CDK (cdk.context.json contains account IDs)
+cdk/cdk.context.json
+

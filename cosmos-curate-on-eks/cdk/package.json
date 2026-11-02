@@ -1,0 +1,22 @@
+{
+  "name": "cdk",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.15.0",
+    "@types/node": "^24.10.1",
+    "aws-cdk": "2.1145.0",
+    "tsx": "^4.23.0",
+    "typescript": "~7.0.2"
+  },
+  "dependencies": {
+    "@aws-cdk/lambda-layer-kubectl-v31": "^2.1.0",
+    "aws-cdk-lib": "^2.273.0",
+    "cdk-nag": "^2.38.2",
+    "constructs": "^10.8.1"
+  }
+}

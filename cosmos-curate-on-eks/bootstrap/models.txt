@@ -1,0 +1,7 @@
+# Curate model names (keys of cosmos_curator/configs/all_models.json) to mirror into S3.
+# Versions are pinned there (HF commit + sha256); re-run seed_models.sh after a Curate version bump.
+# split pipeline (CPU) + embeddings
+transnetv2
+aesthetic_scorer
+clip_vit
+cosmos_embed1_336p
