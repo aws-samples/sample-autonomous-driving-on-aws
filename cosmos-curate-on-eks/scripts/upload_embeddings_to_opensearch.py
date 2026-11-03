@@ -28,6 +28,10 @@ from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
 from opensearchpy.helpers import bulk
 
 
+class RefusedPickleError(pickle.UnpicklingError):
+    """The pickle referenced something other than a numpy array."""
+
+
 class _NumpyOnlyUnpickler(pickle.Unpickler):
     """Curate writes each clip embedding as a pickled numpy array; refuse anything else."""
 
@@ -40,7 +44,7 @@ class _NumpyOnlyUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
         if (module, name) in self._ALLOWED:
             return super().find_class(module, name)
-        raise pickle.UnpicklingError(f"refusing to unpickle {module}.{name}")  # nosemgrep: avoid-pickle
+        raise RefusedPickleError(f"refusing to unpickle {module}.{name}")
 
 
 def load_embedding(data: bytes):

@@ -2,7 +2,7 @@
 # CPU-only Cosmos Curate image (split + Cosmos-Embed1 embeddings; captions via an
 # OpenAI-compatible endpoint). Ubuntu 24.04 + pixi envs, CPU patches from patch_cpu.py,
 # no CUDA base. Model weights are NOT baked in; they are synced to /config/models at runtime.
-FROM ubuntu:24.04
+FROM public.ecr.aws/docker/library/ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PIXI_VERSION=v0.81.0
