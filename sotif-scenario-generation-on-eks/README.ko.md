@@ -30,7 +30,7 @@ Kubernetes Job으로 돌며 **GPU가 필요 없습니다**.
 | 단계 | 하는 일 | 실행 위치 | 실측 (변형 3개) |
 |---|---|---|---|
 | 1. 온톨로지 | SOTIF 클래스 23개, 인스턴스 134개, 관계 99개(`sotif/ontology.nt`)를 Neptune에 적재 | Neptune `db.t4g.medium` | 파일이 바뀔 때 한 번 |
-| 2. 계획과 생성 | 에이전트가 `create_batch`를 호출하고, API가 Neptune에서 클래스 9개를 읽어 Claude에게 변형 3~10개(보행자 종류, 시점, 속도, 가림, 날씨, 조명)를 요청 | AgentCore Runtime, pipeline API | 에이전트 6~9초, 생성 17~22초 |
+| 2. 계획과 생성 | 에이전트가 `create_batch`를 호출하고, API가 Neptune에서 클래스 9개를 읽어 Claude에게 변형 1~10개(기본 5개)를 요청. 변형마다 보행자 종류, 시점, 속도, 가림, 날씨, 조명을 정함 | AgentCore Runtime, pipeline API | 에이전트 6~9초, 생성 17~22초 |
 | 3. SUMO | 변형마다 실행해 보행자와의 최소 거리와 TTC를 재고, 물리적으로 그럴듯한 것만 남김 | EKS Job (Spot) | 약 5초 |
 | 4. RDS-HQ | SUMO 궤적과 도로망을 Cosmos RDS-HQ WebDataset 샤드로 변환 | EKS Job (Spot) | 약 3초 |
 | 5. HDMap | `render_from_rds_hq.py`를 HDMap 모드, Mesa 소프트웨어 OpenGL로 실행. 변형마다 Job 하나씩 병렬 | EKS Job (Spot) | 클립당 19~24초, 1280×704 |

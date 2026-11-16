@@ -32,7 +32,7 @@ include.
 | Stage | What it does | Runs on | Measured (3 variants) |
 |---|---|---|---|
 | 1. Ontology | 23 SOTIF classes, 134 instances, 99 relations (`sotif/ontology.nt`) loaded into Neptune | Neptune `db.t4g.medium` | loaded once per file change |
-| 2. Plan and generate | The agent calls `create_batch`; the API reads 9 classes from Neptune and asks Claude for 3-10 variants (pedestrian type, timing, speed, occlusion, weather, lighting) | AgentCore Runtime, pipeline API | agent 6-9 s, generation 17-22 s |
+| 2. Plan and generate | The agent calls `create_batch`; the API reads 9 classes from Neptune and asks Claude for 1-10 variants (default 5), each setting pedestrian type, timing, speed, occlusion, weather and lighting | AgentCore Runtime, pipeline API | agent 6-9 s, generation 17-22 s |
 | 3. SUMO | Runs each variant, measures minimum distance and TTC to the pedestrian, keeps physically plausible ones | EKS Job (Spot) | about 5 s |
 | 4. RDS-HQ | Converts SUMO trajectories and the road network into Cosmos RDS-HQ WebDataset shards | EKS Job (Spot) | about 3 s |
 | 5. HDMap | `render_from_rds_hq.py` in HDMap mode with Mesa software OpenGL, one Job per variant in parallel | EKS Job (Spot) | 19-24 s per clip, 1280×704 |

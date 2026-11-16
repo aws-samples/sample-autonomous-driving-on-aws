@@ -36,7 +36,7 @@ ontology {클래스: 인스턴스}`) +
       title: 'Stage 3: SUMO 물리 판정 (EKS Job)',
       subtitle: '변형마다 실제로 주행시켜 자차가 보행자를 만나는지 측정하고, 상호작용이 없으면 버림',
       body: box('어떻게 동작하나?', `- 장면: 편도 2차로 직선 도로, x=200 m 횡단보도, 보도 2 m
-- SUMO 1.27.1 + TraCI, 0.1초 간격으로 자차·보행자·주차/대향 차량 기록
+- SUMO 1.28.0 + TraCI, 0.1초 간격으로 자차·보행자·주차/대향 차량 기록
 - 판정: 최소 거리, 최소 TTC, 양보 여부, 최대 감속 → critical / interaction / nominal-yield / no-interaction`) +
         box('실행 위치와 실측', `EKS cpu-spot 노드그룹의 Job (Spot, 0대에서 Cluster Autoscaler가 확장)
 변형 3개: 약 5초`) +
@@ -98,7 +98,7 @@ ontology {class: instance}`) +
       title: 'Stage 3: SUMO physics check (EKS Job)',
       subtitle: 'Each variant is driven to measure whether the ego really meets the pedestrian; variants without an interaction are dropped',
       body: box('How it works', `- Scene: straight road, two lanes each way, zebra crossing at x = 200 m, 2 m sidewalks
-- SUMO 1.27.1 + TraCI, ego, pedestrians, parked and oncoming vehicles recorded every 0.1 s
+- SUMO 1.28.0 + TraCI, ego, pedestrians, parked and oncoming vehicles recorded every 0.1 s
 - Judgement: minimum distance, minimum TTC, yield, max deceleration → critical / interaction / nominal-yield / no-interaction`) +
         box('Where and how long', `Job on the EKS cpu-spot node group (Spot; the Cluster Autoscaler scales it from zero)
 3 variants: about 5 s`) +
