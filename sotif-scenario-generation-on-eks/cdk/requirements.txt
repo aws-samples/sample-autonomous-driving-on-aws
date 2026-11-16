@@ -1,0 +1,5 @@
+aws-cdk-lib==2.276.0
+constructs>=10.0.0,<11.0.0
+aws-cdk.lambda-layer-kubectl-v37==2.0.0
+cdk-nag==2.38.2
+urllib3==2.8.0  # scripts/verify_pipeline.py runs in this venv

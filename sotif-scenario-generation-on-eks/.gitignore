@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+
+# Data
+data/local/
+scenarios/**/.tripinfo.xml
+scenarios/**/.summary.xml
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.backup
+*.backup2
+*.old
+*.old2
+*.broken
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+*.egg-info/
+dist/
+build/
+
+# Temporary experiments
+.orca/
+viewer.html
+arch-official.html
+pipeline-arch.html
+index-final.html
+
+# Gallery videos of the built-in scenarios (local only; the sample ships without them)
+web/media/

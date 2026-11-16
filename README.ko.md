@@ -10,6 +10,7 @@ AWS에서 자율주행과 Physical AI 데이터 파이프라인을 구축하는 
 | 샘플 | 설명 |
 |---|---|
 | [cosmos-curate-on-eks](cosmos-curate-on-eks/README.ko.md) | NVIDIA Cosmos Curate 영상 큐레이션 파이프라인(분할, 필터, 임베딩, 캡션)을 GPU 인스턴스 없이 Amazon EKS의 CPU 노드에서 실행합니다. 캡션은 Amazon Bedrock의 Claude가 생성하고, 임베딩은 Amazon OpenSearch Serverless에서 검색할 수 있습니다. |
+| [sotif-scenario-generation-on-eks](sotif-scenario-generation-on-eks/README.ko.md) | 자연어로 적은 주행 시험 요청을 SOTIF(ISO 21448) 횡단보도 시나리오 변형으로 만듭니다. GPU 인스턴스 없이 Amazon EKS에서 실행합니다. Amazon Bedrock AgentCore의 에이전트와 Amazon Bedrock의 Claude가 Amazon Neptune의 SOTIF 온톨로지 안에서 변형을 만들고, SUMO가 변형마다 물리적으로 검사하며, Cosmos-Drive-Dreams 툴킷이 CPU에서 HDMap 조건 영상을 렌더링합니다. 변형은 OpenSCENARIO·OpenDRIVE로 내보낼 수 있습니다. |
 
 ## 보안
 

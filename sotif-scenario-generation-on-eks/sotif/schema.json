@@ -1,0 +1,207 @@
+{
+ "namespace": "http://sotif.ontology/",
+ "source": "Classes drafted for this sample with an AI assistant from ISO 21448 SOTIF, Euro NCAP and ISO 34502 concepts (no standard text); instances may be extended by scripts/build_ontology.sh",
+ "classes": [
+  {
+   "name": "TriggeringCondition",
+   "parent": null,
+   "description": "SOTIF 위험 상황을 유발하는 조건",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "EnvironmentFactor",
+   "parent": "TriggeringCondition",
+   "description": "외부 환경 요인",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "WeatherCondition",
+   "parent": "EnvironmentFactor",
+   "description": "기상 조건",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "LightingCondition",
+   "parent": "EnvironmentFactor",
+   "description": "조명/광원 조건",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "RoadSurfaceCondition",
+   "parent": "EnvironmentFactor",
+   "description": "노면 상태",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "VisibilityCondition",
+   "parent": "EnvironmentFactor",
+   "description": "가시성 조건",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "RoadInfrastructure",
+   "parent": "TriggeringCondition",
+   "description": "도로 인프라 요소",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "RoadType",
+   "parent": "RoadInfrastructure",
+   "description": "도로 유형",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "LaneMarking",
+   "parent": "RoadInfrastructure",
+   "description": "차선 표시 상태",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "TrafficControl",
+   "parent": "RoadInfrastructure",
+   "description": "교통 제어 시설",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "ConstructionZone",
+   "parent": "RoadInfrastructure",
+   "description": "공사 구간",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "DynamicActor",
+   "parent": null,
+   "description": "동적 교통 참여자",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "Vehicle",
+   "parent": "DynamicActor",
+   "description": "차량류",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "VRU",
+   "parent": "DynamicActor",
+   "description": "취약 도로 사용자 (보행자, 자전거 등)",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "DrivingBehavior",
+   "parent": null,
+   "description": "타 교통 참여자의 행동 패턴",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "StaticObject",
+   "parent": null,
+   "description": "도로 위/변 정적 물체",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "Sensor",
+   "parent": null,
+   "description": "자율주행 센서 유형",
+   "sotif_category": "functional_insufficiency"
+  },
+  {
+   "name": "PerceptionFunction",
+   "parent": null,
+   "description": "인식 기능",
+   "sotif_category": "functional_insufficiency"
+  },
+  {
+   "name": "FunctionalInsufficiency",
+   "parent": null,
+   "description": "기능 불충분성 유형",
+   "sotif_category": "functional_insufficiency"
+  },
+  {
+   "name": "HazardousEvent",
+   "parent": null,
+   "description": "위험 이벤트",
+   "sotif_category": "hazardous_event"
+  },
+  {
+   "name": "SOTIFArea",
+   "parent": null,
+   "description": "SOTIF 시나리오 영역 분류 (Area 1-4)",
+   "sotif_category": "classification"
+  },
+  {
+   "name": "EgoState",
+   "parent": null,
+   "description": "자차 상태",
+   "sotif_category": "triggering_condition"
+  },
+  {
+   "name": "OcclusionState",
+   "parent": null,
+   "description": "가림 상태",
+   "sotif_category": "triggering_condition"
+  }
+ ],
+ "predicates": {
+  "degrades": "environmental condition reduces sensor or perception performance",
+  "triggers": "condition leads to a hazardous event or functional insufficiency",
+  "occludes": "physical object blocks line of sight",
+  "requires": "prerequisite relationship",
+  "conflicts_with": "mutually exclusive conditions",
+  "mitigates": "measure or behavior reduces the risk of another entity",
+  "located_on": "spatial relationship",
+  "performs": "actor does an action",
+  "has_property": "entity attribute"
+ },
+ "requiredInstances": [
+  "AdultPedestrian",
+  "ChildPedestrian",
+  "CollisionWithVRU",
+  "Cyclist",
+  "EScooterRider",
+  "FullOcclusion",
+  "HighSpeed",
+  "LowSpeed",
+  "MediumSpeed",
+  "NoOcclusion",
+  "NormalDriving",
+  "ParkedVehicle",
+  "PartialOcclusion",
+  "PedestrianWithStroller",
+  "Stationary",
+  "WheelchairUser"
+ ],
+ "constraints": {
+  "degrades": {
+   "object": [
+    "Sensor",
+    "PerceptionFunction"
+   ],
+   "subjectNot": [
+    "Sensor",
+    "PerceptionFunction",
+    "FunctionalInsufficiency",
+    "HazardousEvent",
+    "SOTIFArea"
+   ]
+  },
+  "triggers": {
+   "object": [
+    "HazardousEvent",
+    "FunctionalInsufficiency",
+    "EnvironmentFactor"
+   ],
+   "subjectNot": [
+    "SOTIFArea"
+   ]
+  },
+  "occludes": {
+   "subject": [
+    "Vehicle",
+    "VRU",
+    "StaticObject",
+    "ConstructionZone"
+   ]
+  }
+ },
+ "constraintsNote": "Classes match themselves and their subclasses (rdfs:subClassOf). Derived from the relations in the original ontology."
+}

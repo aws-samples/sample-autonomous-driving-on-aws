@@ -1,0 +1,382 @@
+{
+ "relations": {
+  "ActiveConstruction triggers FalseNegative": {
+   "source": "arxiv-2303.04037",
+   "evidence": "Tab. II: \"Construction\" (2 occurrences) among novel triggering condition candidates from FN p-value testing (expert-provided, not validated)"
+  },
+  "Area1_KnownSafe conflicts_with Area2_KnownUnsafe": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 4.4.4, Fig. 6: \"hazardous scenarios, as opposed to non-hazardous scenarios ... further sub-divided into known and unknown scenarios\""
+  },
+  "Area3_UnknownUnsafe conflicts_with Area4_UnknownSafe": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Fig. 6: \"unknown hazardous scenarios\" vs \"unknown, not hazardous scenarios\""
+  },
+  "CarTransporterTrailer triggers FalseNegative": {
+   "source": "arxiv-2303.04037",
+   "evidence": "Tab. II: \"Cars loaded on a trailer\" (5 occurrences) among novel triggering condition candidates from FN p-value testing (expert-provided, not validated)"
+  },
+  "CutIn triggers UnnecessaryBraking": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.3, TC012/FI005c: \"the cut-in of a faster TgtV (TC012) may still lead to an overly conservative braking maneuver on behalf of the EgoV\""
+  },
+  "DamagedVehicleOnShoulder located_on Highway": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Obstacle on Hard Shoulder: shoulder blocked by damaged vehicle (TC032)."
+  },
+  "DamagedVehicleOnShoulder triggers LaneDeparture": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.8 (TC032 in list): \"All of the above TCs ... may cause the MPC-TP to provide trajectories which are not drivable and thus lead the EgoV to leave its assigned lane\" (FI007)"
+  },
+  "DirectSunGlare degrades LaneDetection": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.7, TC023a (common LKA TC from literature): \"unrecognizable lane markings due to direct sunlight\""
+  },
+  "FullOcclusion degrades Lidar": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Sec. V-B: \"Largely occluded scenes have higher FN rate than fully visible scenes for LIDARs, given the data.\""
+  },
+  "HeavyFogVisibility degrades Camera": {
+   "source": "arxiv-2509.06333",
+   "evidence": "Introduction: \"relying solely on an optical camera can be problematic in conditions such as night, glare, or fog\""
+  },
+  "HeavyFogVisibility degrades LaneDetection": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.7, TC024b: \"insufficient visibility of lane markings due to low visibility, e.g., due to snow / ice or fog\""
+  },
+  "HeavyFogVisibility degrades Lidar": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Sec. II-C (example): \"in a weather situation involving dense fog the FN rate of the grid cells farther from the HAD vehicles will be different\""
+  },
+  "HeavyRain has_property StandingWater": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Sec. IV-A: \"Especially heavy rain may cause flooding on road\""
+  },
+  "HeavyRain triggers FalseNegative": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Sec. IV-A: \"heavy rain may cause flooding on road, which in turn can decrease the TP in detections [14]\""
+  },
+  "HighSpeed triggers RearEndCollision": {
+   "source": "arxiv-2407.21569",
+   "evidence": "If the EgoV exceeds a certain speed vmax, this can lead to a rear-end collision because the prediction horizon Np is not long enough for the EgoV to come to a full stop within it (FI004). (Section 5.2)"
+  },
+  "Highway has_property HighSpeed": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.2: \"There is no speed limit on certain sections of the Autobahn\""
+  },
+  "LowLightDusk degrades Camera": {
+   "source": "arxiv-2503.00709",
+   "evidence": "Introduction: \"LiDAR detection rates only degrade approximately 12.5% in the dark, while camera detection rates degrade by 75%\"; \"This reliance on cameras can become problematic in low-light or adverse weather conditions.\""
+  },
+  "MisleadingMarking triggers MisclassificationError": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.7, TC025a,b: \"infrastructure items that could be misinterpreted as lane markings, e.g., curbs or dividers\""
+  },
+  "OffRamp located_on Highway": {
+   "source": "arxiv-2407.21569",
+   "evidence": "TC028 exiting the freeway via an off-ramp."
+  },
+  "OilSpillage triggers LaneDeparture": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.8, TC007c: \"an oil spillage\" ... \"All of the above TCs ... lead the EgoV to leave its assigned lane\" (FI007)"
+  },
+  "OnRamp located_on Highway": {
+   "source": "arxiv-2407.21569",
+   "evidence": "TC027 entering the freeway from an on-ramp."
+  },
+  "PartialOcclusion triggers FalseNegative": {
+   "source": "arxiv-2303.04037",
+   "evidence": "Modeled as Proposition 1 (BN structure): \"Truncation and occlusion in detection may influence FN rate.\""
+  },
+  "Radar triggers LateDetection": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 4.5 (illustrative example): \"radar sensor with an insufficient field of view in case of curved roads ... resulting in a late detection of the leading vehicle\""
+  },
+  "RapidIlluminationChange degrades Camera": {
+   "source": "arxiv-2210.10233",
+   "evidence": "Introduction: \"sudden light changes due to change of road surroundings both at daytime and nighttime can severely affect the lane view\""
+  },
+  "RearEndedByTrailingVehicle requires SuddenBraking": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.3, TC013/FI009: \"sudden braking maneuvers may lead to a collision with the trailing vehicle\""
+  },
+  "ReducedVisibility degrades Camera": {
+   "source": "arxiv-2509.06333",
+   "evidence": "Introduction: \"relying solely on an optical camera can be problematic in conditions such as night, glare, or fog\""
+  },
+  "SnowCoveredMarking degrades LaneDetection": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.7, TC024a: \"insufficient visibility of lane markings due to low visibility, e.g., due to snow / ice\""
+  },
+  "SnowCoveredMarking requires Snow": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Appendix A: \"(TC024a) insufficient visibility of lane markings: snow / ice\""
+  },
+  "StrongSideWind triggers LaneDeparture": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.8, TC009 \"dangerous side wind gusts\" ... \"All of the above TCs ... lead the EgoV to leave its assigned lane\" (FI007)"
+  },
+  "TunnelEntry degrades LaneDetection": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.7, TC023b: \"unrecognizable lane markings due to ... change of lighting conditions, e.g., when entering a tunnel\""
+  },
+  "UnevenRoadSurface triggers LaneDeparture": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.8, TC008d,e \"uneven road surface ... ruts or blow-ups\" ... \"lead the EgoV to leave its assigned lane\" (FI007)"
+  },
+  "WetRoad conflicts_with DryRoad": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Fig. 3: Road node states Wet / Dry (mutually exclusive BN states)"
+  },
+  "WetRoad degrades Lidar": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Modeled as Proposition 3 (BN structure): \"Road condition and scene illumination can effect reflection in the scene, which in turn can effect the TP/FN rate.\" LIDAR case study"
+  },
+  "WetRoadReflection requires WetRoad": {
+   "source": "arxiv-2210.10233",
+   "evidence": "Introduction: \"Light reflection from wet road may also interrupt the lane visibility.\""
+  },
+  "WetRoadReflection triggers FalseNegative": {
+   "source": "arxiv-2303.04029",
+   "evidence": "Modeled as Proposition 3 (BN structure): \"...reflection in the scene, which in turn can effect the TP/FN rate.\""
+  },
+  "WrongWayVehicle performs WrongWayDriving": {
+   "source": "arxiv-2407.21569",
+   "evidence": "Sec. 5.8: \"a wrong way driver (TC006)\""
+  }
+ },
+ "instances": {
+  "ActiveConstruction": {
+   "sources": [
+    "arxiv-2303.04037"
+   ]
+  },
+  "Area1_KnownSafe": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "Area2_KnownUnsafe": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "Area3_UnknownUnsafe": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "Area4_UnknownSafe": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "Camera": {
+   "sources": [
+    "arxiv-2509.06333",
+    "arxiv-2503.00709",
+    "arxiv-2210.10233"
+   ]
+  },
+  "CarTransporterTrailer": {
+   "sources": [
+    "arxiv-2303.04037"
+   ]
+  },
+  "CutIn": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "DamagedVehicleOnShoulder": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "DirectSunGlare": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "DryRoad": {
+   "sources": [
+    "arxiv-2303.04029"
+   ]
+  },
+  "FalseNegative": {
+   "sources": [
+    "arxiv-2303.04037",
+    "arxiv-2303.04029"
+   ]
+  },
+  "FullOcclusion": {
+   "sources": [
+    "arxiv-2303.04029"
+   ]
+  },
+  "HeavyFogVisibility": {
+   "sources": [
+    "arxiv-2509.06333",
+    "arxiv-2407.21569",
+    "arxiv-2303.04029"
+   ]
+  },
+  "HeavyRain": {
+   "sources": [
+    "arxiv-2303.04029"
+   ]
+  },
+  "HighSpeed": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "Highway": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "LaneDeparture": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "LaneDetection": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "LateDetection": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "Lidar": {
+   "sources": [
+    "arxiv-2303.04029"
+   ]
+  },
+  "LowLightDusk": {
+   "sources": [
+    "arxiv-2503.00709"
+   ]
+  },
+  "MisclassificationError": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "MisleadingMarking": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "OffRamp": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "OilSpillage": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "OnRamp": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "PartialOcclusion": {
+   "sources": [
+    "arxiv-2303.04037"
+   ]
+  },
+  "Radar": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "RapidIlluminationChange": {
+   "sources": [
+    "arxiv-2210.10233"
+   ]
+  },
+  "RearEndCollision": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "RearEndedByTrailingVehicle": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "ReducedVisibility": {
+   "sources": [
+    "arxiv-2509.06333"
+   ]
+  },
+  "Snow": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "SnowCoveredMarking": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "StandingWater": {
+   "sources": [
+    "arxiv-2303.04029"
+   ]
+  },
+  "StrongSideWind": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "SuddenBraking": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "TunnelEntry": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "UnevenRoadSurface": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "UnnecessaryBraking": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "WetRoad": {
+   "sources": [
+    "arxiv-2303.04029",
+    "arxiv-2210.10233"
+   ]
+  },
+  "WetRoadReflection": {
+   "sources": [
+    "arxiv-2210.10233",
+    "arxiv-2303.04029"
+   ]
+  },
+  "WrongWayDriving": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  },
+  "WrongWayVehicle": {
+   "sources": [
+    "arxiv-2407.21569"
+   ]
+  }
+ }
+}

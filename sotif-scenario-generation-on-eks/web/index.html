@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOTIF Scenario Generation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+         background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%); color: #e8eaed; min-height: 100vh; padding: 28px 20px; }
+  .wrap { max-width: 1500px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; gap: 16px; flex-wrap: wrap; }
+  h1 { font-size: 28px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  header a { color: #667eea; text-decoration: none; font-size: 14px; border: 1px solid rgba(102,126,234,.3); padding: 6px 14px; border-radius: 6px; }
+  .grid { display: grid; grid-template-columns: 380px 1fr; gap: 18px; align-items: start; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 16px; }
+  .panel h2 { font-size: 14px; color: #9aa0a6; font-weight: 600; margin: 4px 0 10px; }
+  textarea { width: 100%; min-height: 96px; background: #0d1220; color: #e8eaed; border: 1px solid #2c3550; border-radius: 8px; padding: 11px; font: inherit; resize: vertical; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+  .chip { font-size: 12px; padding: 5px 10px; border-radius: 999px; background: rgba(102,126,234,.12); color: #b8c1ff; cursor: pointer; border: 0; }
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+  select, button.go { background: #0d1220; color: #e8eaed; border: 1px solid #2c3550; border-radius: 8px; padding: 9px 12px; font: inherit; }
+  button.go { background: linear-gradient(135deg, #667eea, #764ba2); border: 0; font-weight: 600; cursor: pointer; flex: 1; }
+  button.go:disabled { opacity: .5; cursor: wait; }
+  .reply { margin-top: 12px; white-space: pre-wrap; font-size: 13.5px; line-height: 1.6; color: #cfd6e4; }
+  .reply.err { color: #ff8a80; }
+  .recent div { padding: 6px 8px; border-radius: 6px; cursor: pointer; color: #9aa0a6; display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+  .recent div:hover { background: rgba(255,255,255,.05); color: #e8eaed; }
+  .recent div span:last-child { white-space: nowrap; }
+  .meta { display: flex; gap: 18px; flex-wrap: wrap; align-items: baseline; font-size: 13px; color: #9aa0a6; margin-bottom: 14px; }
+  .meta b { color: #e8eaed; font-weight: 600; }
+  .clock { font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 700; color: #e8eaed; }
+  /* stepper */
+  .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 12px; }
+  .step { background: #0d1220; border: 1px solid #222a40; border-radius: 10px; padding: 10px; cursor: pointer; position: relative; min-height: 78px; }
+  .step.sel { border-color: #667eea; box-shadow: 0 0 0 1px #667eea inset; }
+  .step .n { font-size: 11px; color: #6f7a90; }
+  .step .t { font-size: 13px; font-weight: 600; margin: 3px 0 6px; }
+  .step .s { font-size: 12px; color: #9aa0a6; display: flex; justify-content: space-between; }
+  .step .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 0 0 10px 10px; background: #222a40; }
+  .step.running .bar { background: repeating-linear-gradient(45deg, #667eea 0 8px, #8a9bf5 8px 16px); background-size: 22px 22px; animation: move 1s linear infinite; }
+  .step.done .bar { background: #34c38f; } .step.failed .bar { background: #ff6b6b; } .step.partial .bar { background: linear-gradient(90deg, #34c38f var(--p,0%), #667eea var(--p,0%)); }
+  @keyframes move { to { background-position: 22px 0; } }
+  @media (max-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .detail { background: #0d1220; border: 1px solid #222a40; border-radius: 10px; padding: 14px; font-size: 13px; min-height: 120px; overflow-x: auto; }
+  .detail h3 { font-size: 14px; margin-bottom: 8px; }
+  .detail p.sub { color: #9aa0a6; margin-bottom: 10px; line-height: 1.55; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #1d2438; vertical-align: top; }
+  th { color: #8790a6; font-weight: 600; white-space: nowrap; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #c3cdf5; }
+  pre { white-space: pre-wrap; background: #090d18; padding: 8px; border-radius: 6px; margin-top: 4px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tags span { font-size: 11px; padding: 2px 7px; border-radius: 4px; background: rgba(255,255,255,.06); color: #b9c0cf; }
+  .tags span b { color: #8a9bf5; font-weight: 600; margin-left: 3px; }
+  .label-critical { color: #ff8a80 !important; } .label-interaction { color: #ffd166 !important; } .label-nominal-yield { color: #7ee2b8 !important; } .label-no-interaction { color: #8790a6 !important; }
+  .state { font-size: 11px; padding: 1px 7px; border-radius: 4px; background: #1d2438; color: #9aa0a6; }
+  .state.succeeded { background: rgba(52,195,143,.15); color: #7ee2b8; } .state.running, .state.submitted { background: rgba(102,126,234,.18); color: #b8c1ff; } .state.failed { background: rgba(255,107,107,.15); color: #ff8a80; }
+  /* gantt */
+  .gantt { margin: 12px 0 4px; }
+  .lane { display: grid; grid-template-columns: 200px 1fr 60px; align-items: center; gap: 10px; height: 22px; font-size: 11.5px; }
+  .lane .name { color: #8790a6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .track { position: relative; height: 9px; background: rgba(255,255,255,.04); border-radius: 5px; overflow: hidden; }
+  .gbar { position: absolute; top: 0; bottom: 0; border-radius: 5px; transition: left .4s, width .4s; }
+  .gbar.running { background: repeating-linear-gradient(45deg, #667eea 0 8px, #8a9bf5 8px 16px); background-size: 22px 22px; animation: move 1s linear infinite; }
+  .gbar.submitted { background: rgba(102,126,234,.35); } .gbar.succeeded { background: #34c38f; } .gbar.failed { background: #ff6b6b; }
+  .lane .dur { text-align: right; color: #8790a6; font-variant-numeric: tabular-nums; }
+  /* variant cards */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
+  .card { background: #0d1220; border: 1px solid #222a40; border-radius: 10px; overflow: hidden; }
+  .card .head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 10px 14px; border-bottom: 1px solid #1d2438; flex-wrap: wrap; }
+  .card .id { font-weight: 600; word-break: break-all; }
+  .card .views { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  @media (max-width: 900px) { .card .views { grid-template-columns: 1fr; } }
+  .view { position: relative; background: #05070d; aspect-ratio: 1280 / 704; display: flex; align-items: center; justify-content: center; color: #5f6b85; font-size: 13px; }
+  .view canvas, .view video { width: 100%; height: 100%; display: block; }
+  .view .cap { position: absolute; left: 8px; top: 6px; font-size: 11px; color: #9aa0a6; background: rgba(5,7,13,.7); padding: 2px 6px; border-radius: 4px; pointer-events: none; }
+  .card .body { padding: 10px 14px; font-size: 12.5px; color: #9aa0a6; line-height: 1.55; }
+  .judge { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px; } .judge b { color: #e8eaed; }
+  .judge a.osc { margin-left: auto; color: #8ab4f8; text-decoration: none; } .judge a.osc:hover { text-decoration: underline; }
+  .pub { display: flex; gap: 8px; align-items: center; font-size: 12px; }
+  .pub button { background: rgba(102,126,234,.15); color: #b8c1ff; border: 1px solid rgba(102,126,234,.4); border-radius: 6px; padding: 4px 10px; cursor: pointer; font: inherit; }
+  .pub button.quiet { background: none; border-color: #2c3550; color: #8790a6; }
+  .pub a { color: #7ee2b8; text-decoration: none; }
+  .note { font-size: 12px; color: #6f7a90; margin-top: 14px; line-height: 1.6; }
+  .empty { color: #6f7a90; font-size: 14px; padding: 36px 0; text-align: center; }
+  .links { display: flex; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 data-i18n="title"></h1>
+    <div class="links"><a id="langSwitch" href="#"></a><a id="galleryLink" href="gallery.html" data-i18n="gallery"></a></div>
+  </header>
+  <div class="grid">
+    <section class="panel">
+      <h2 data-i18n="request"></h2>
+      <textarea id="prompt"></textarea>
+      <div class="chips" id="examples"></div>
+      <div class="row">
+        <select id="count"><option>3</option><option selected>5</option><option>8</option><option>10</option></select>
+        <button class="go" id="go" data-i18n="run"></button>
+      </div>
+      <div class="reply" id="reply"></div>
+      <h2 style="margin-top:16px" data-i18n="recent"></h2>
+      <div class="recent" id="recent"></div>
+    </section>
+    <section class="panel">
+      <div id="batch"><div class="empty" data-i18n="emptyBatch"></div></div>
+      <p class="note" data-i18n="note"></p>
+    </section>
+  </div>
+</div>
+<script>
+const I18N = {
+  ko: {
+    title: '자연어 → 온톨로지 → 변형 → SUMO → RDS-HQ → HDMap', gallery: '시나리오 갤러리 →', langSwitch: 'English',
+    request: '요청', run: '실행', recent: '최근 배치', count: '변형 수',
+    placeholder: '예: 야간에 아이가 주차된 차 사이에서 갑자기 튀어나오는 상황',
+    examples: ['야간에 아이가 주차된 차 사이에서 갑자기 튀어나오는 상황', '비 오는 날 휠체어 사용자가 천천히 건너는 상황, 저속 접근', '안개 속 고속 접근, 노인 보행자'],
+    emptyBatch: '요청을 실행하면 단계별 진행과 중간 결과, 영상이 여기에 나타납니다.',
+    note: 'HDMap은 차선·경계·횡단보도·차량/보행자 박스를 그린 조건 영상입니다(CPU 렌더). 실사 영상 생성(Cosmos Transfer)은 GPU 단계가 필요하며 아직 켜져 있지 않습니다. 왼쪽 위에서 본 장면은 SUMO 궤적이며, HDMap 영상을 재생하면 같은 시뮬레이션 시각으로 맞춰 움직입니다.',
+    variantsSuffix: (n) => `(변형 ${n}개)`, thinking: '에이전트가 요청을 해석하고 있습니다…',
+    direct: (b) => `에이전트가 연결되지 않아 파이프라인을 직접 시작했습니다. 배치 ${b}`, error: (m) => `오류: ${m}`, loading: '불러오는 중…',
+    apiDown: '파이프라인 API에 연결할 수 없습니다.',
+    steps: { agent: ['요청 해석', 'AgentCore 에이전트'], ontology: ['온톨로지 조회', 'Neptune SOTIF 그래프'], generate: ['변형 생성', 'Bedrock (Claude)'],
+             sumo: ['SUMO 판정', 'EKS Job · SUMO 1.27'], rdshq: ['RDS-HQ 변환', 'EKS Job'], hdmap: ['HDMap 렌더', 'EKS Job · Cosmos 툴킷 (CPU)'] },
+    state: { done: '완료', failed: '실패', running: '진행 중', partial: '진행 중', waiting: '대기' },
+    otherSession: '이 배치는 다른 세션에서 시작됨', directRun: 'API 직접 실행', tools: (n) => `도구 ${n}회 호출`,
+    snapshot: '스냅샷', classes: (n) => `${n}개 클래스`, noRecord: '조회 기록 없음', videos: (d, n) => `${d}/${n}개 영상`, queued: 'Job 대기 (노드 확장 중일 수 있음)',
+    batch: '배치', focus: '요청', status: '상태', complete: '완료', inProgress: '진행 중', failedWith: (e) => `실패: ${e}`,
+    dAgentTitle: '요청 해석', dAgentToolsTitle: '요청 해석 — 에이전트가 호출한 도구',
+    dAgentOther: (f) => `이 배치는 다른 세션이나 API로 시작되어 에이전트 기록이 없습니다. 요청: ${f}`,
+    dAgentDirect: '에이전트(AgentCore)가 연결되지 않아 요청 문장을 그대로 focus로 넘겨 파이프라인 API를 직접 호출했습니다.',
+    dAgentSub: 'AgentCore Runtime의 에이전트가 요청을 해석해 파이프라인 API 도구를 호출합니다.',
+    dOntTitle: '온톨로지 조회',
+    dOntSub: 'SOTIF 온톨로지(출처가 붙은 CC BY 논문 기반)에서 횡단보도 장면과 관련된 클래스를 조회해 변형 생성 프롬프트에 넣습니다. SUMO가 반영할 수 있는 인스턴스(보행자 종류, 자차 속도대, 가림)는 파라미터로, 조명·날씨는 영상 생성용 태그로 기록됩니다.',
+    colClass: '클래스', colInstances: '인스턴스', colUsable: '사용 가능', usedTags: '이번 변형들이 사용한 인스턴스',
+    oldBatchTags: '이 배치는 조회 기록을 남기기 전 버전으로 만들어졌습니다. 사용한 인스턴스:', querying: '조회 중…',
+    dGenTitle: '변형 생성', genMeta: (g) => `${g.model} · ${g.latencyS}s · 입력 ${g.usage?.inputTokens ?? '–'} / 출력 ${g.usage?.outputTokens ?? '–'} 토큰 · 요청 ${g.requested}개 → ${g.returned}개`,
+    waitingModel: '모델 응답 대기 중…', colVariant: '변형', colEgo: '자차', colPeds: '보행자', colParked: '주차', colOncoming: '대향', colWhy: '근거', none: '없음',
+    dSumoTitle: 'SUMO 물리 판정', dSumoSub: '각 변형을 SUMO로 실제 주행시켜 자차가 보행자를 실제로 만나는지(최소 거리, TTC, 양보 여부)를 측정하고, 상호작용이 없는 변형은 버립니다.',
+    colLabel: '판정', colKeep: '채택', colMinDist: '최소 거리', colMinTtc: '최소 TTC', colYield: '양보', colDecel: '최대 감속', colConflict: '충돌 구간',
+    yes: '예', no: '아니오', waitingSim: '시뮬레이션 대기 중…',
+    dRdsTitle: 'RDS-HQ 변환', dRdsSub: '채택된 변형의 SUMO 궤적을 Cosmos 툴킷 입력(RDS-HQ: 포즈 30Hz, 객체 박스 10Hz, 차선·경계·횡단보도)으로 바꿉니다. 렌더 길이는 121프레임 청크 3개(12.1초)입니다.',
+    colWindow: '렌더 구간', colPoses: '포즈', colBoxes: '박스', colObjects: '객체', colMap: '지도', waitingConv: '변환 대기 중…',
+    dHdTitle: 'HDMap 조건 영상', dHdSub: '변형마다 EKS Job 하나가 Cosmos-Drive-Dreams 툴킷으로 앞카메라(f-theta) 조건 영상을 CPU에서 렌더합니다. Job은 Spot 노드에서 병렬로 돌고, 노드가 없으면 Cluster Autoscaler가 늘립니다.',
+    colState: '상태', colRender: '렌더 시간', waiting: '대기 중…',
+    lane: { generate: '온톨로지 + 변형 생성', sumo: 'SUMO 판정', rdshq: 'RDS-HQ 변환' }, laneWaiting: '대기',
+    capSumo: 'SUMO · 위에서 본 장면', capHd: 'HDMap 조건 영상 · Cosmos 툴킷', excluded: '제외', excludedBySumo: 'SUMO 판정에서 제외', pending: '대기',
+    ego: '자차', minDist: '최소 거리', yieldLbl: '양보',
+    osc: 'OpenSCENARIO 내려받기', oscTip: 'OpenSCENARIO 1.1 (.xosc) + OpenDRIVE 1.6 (.xodr), SUMO 궤적 재현',
+    addToGallery: '갤러리에 추가', inGallery: '✓ 갤러리에 있음', unpublish: '취소', publishFailed: (m) => `게시 실패: ${m}`,
+    approaching: (d, v) => `◀ 자차 접근 중 · 횡단보도까지 ${d} m · ${v}`, hdWindow: ' · HDMap 구간', recentDone: '완료', recentFailed: '실패', recentRunning: '진행',
+  },
+  en: {
+    title: 'Natural language → Ontology → Variants → SUMO → RDS-HQ → HDMap', gallery: 'Scenario gallery →', langSwitch: '한국어',
+    request: 'Request', run: 'Run', recent: 'Recent batches', count: 'Variants',
+    placeholder: 'e.g. A child suddenly runs out from between parked cars at night',
+    examples: ['A child suddenly runs out from between parked cars at night', 'A wheelchair user crosses slowly in the rain, low-speed approach', 'High-speed approach in fog, elderly pedestrian'],
+    emptyBatch: 'Run a request to see each stage, its intermediate results and the videos here.',
+    note: 'HDMap is a condition video of lanes, boundaries, crossings and vehicle/pedestrian boxes (rendered on CPU). Photorealistic generation (Cosmos Transfer) needs a GPU stage that is not enabled yet. The top-down view is the SUMO trajectory; while the HDMap video plays it follows the same simulation time.',
+    variantsSuffix: (n) => `(${n} variants)`, thinking: 'The agent is interpreting the request…',
+    direct: (b) => `The agent is not connected, so the pipeline was started directly. Batch ${b}`, error: (m) => `Error: ${m}`, loading: 'Loading…',
+    apiDown: 'Cannot reach the pipeline API.',
+    steps: { agent: ['Interpret request', 'AgentCore agent'], ontology: ['Query ontology', 'Neptune SOTIF graph'], generate: ['Generate variants', 'Bedrock (Claude)'],
+             sumo: ['SUMO check', 'EKS Job · SUMO 1.27'], rdshq: ['RDS-HQ conversion', 'EKS Job'], hdmap: ['HDMap render', 'EKS Job · Cosmos toolkit (CPU)'] },
+    state: { done: 'Done', failed: 'Failed', running: 'Running', partial: 'Running', waiting: 'Waiting' },
+    otherSession: 'Started from another session', directRun: 'Direct API call', tools: (n) => `${n} tool call${n === 1 ? '' : 's'}`,
+    snapshot: 'snapshot', classes: (n) => `${n} classes`, noRecord: 'Not recorded', videos: (d, n) => `${d}/${n} videos`, queued: 'Job queued (nodes may be scaling up)',
+    batch: 'Batch', focus: 'Request', status: 'Status', complete: 'Complete', inProgress: 'In progress', failedWith: (e) => `Failed: ${e}`,
+    dAgentTitle: 'Interpret request', dAgentToolsTitle: 'Interpret request — tools the agent called',
+    dAgentOther: (f) => `This batch was started from another session or the API, so there is no agent record. Request: ${f}`,
+    dAgentDirect: 'The agent (AgentCore) is not connected, so the request text was passed as the focus to the pipeline API directly.',
+    dAgentSub: 'The agent on AgentCore Runtime interprets the request and calls the pipeline API tools.',
+    dOntTitle: 'Query ontology',
+    dOntSub: 'Classes relevant to the crosswalk scene are read from the SOTIF ontology (built from cited CC BY papers) and put into the variant-generation prompt. Instances SUMO can honour (pedestrian kind, ego speed band, occlusion) become parameters; lighting and weather are recorded as tags for video generation.',
+    colClass: 'Class', colInstances: 'Instances', colUsable: 'Usable', usedTags: 'Instances used by these variants',
+    oldBatchTags: 'This batch was made before the query was recorded. Instances used:', querying: 'Querying…',
+    dGenTitle: 'Generate variants', genMeta: (g) => `${g.model} · ${g.latencyS}s · ${g.usage?.inputTokens ?? '–'} in / ${g.usage?.outputTokens ?? '–'} out tokens · ${g.requested} requested → ${g.returned} returned`,
+    waitingModel: 'Waiting for the model…', colVariant: 'Variant', colEgo: 'Ego', colPeds: 'Pedestrians', colParked: 'Parked', colOncoming: 'Oncoming', colWhy: 'Rationale', none: 'none',
+    dSumoTitle: 'SUMO physics check', dSumoSub: 'Each variant is driven in SUMO to measure whether the ego really meets the pedestrian (minimum distance, TTC, yield); variants without an interaction are dropped.',
+    colLabel: 'Label', colKeep: 'Kept', colMinDist: 'Min distance', colMinTtc: 'Min TTC', colYield: 'Yielded', colDecel: 'Max decel', colConflict: 'Conflict',
+    yes: 'yes', no: 'no', waitingSim: 'Waiting for the simulation…',
+    dRdsTitle: 'RDS-HQ conversion', dRdsSub: 'SUMO trajectories of the kept variants become Cosmos toolkit input (RDS-HQ: poses at 30 Hz, object boxes at 10 Hz, lanes, boundaries, crossings). Each render is three 121-frame chunks (12.1 s).',
+    colWindow: 'Render window', colPoses: 'Poses', colBoxes: 'Boxes', colObjects: 'Objects', colMap: 'Map', waitingConv: 'Waiting for conversion…',
+    dHdTitle: 'HDMap condition video', dHdSub: 'One EKS Job per variant renders the front-camera (f-theta) condition video with the Cosmos-Drive-Dreams toolkit on CPU. Jobs run in parallel on Spot nodes; the Cluster Autoscaler adds nodes when none are free.',
+    colState: 'State', colRender: 'Render time', waiting: 'Waiting…',
+    lane: { generate: 'Ontology + variant generation', sumo: 'SUMO check', rdshq: 'RDS-HQ conversion' }, laneWaiting: 'waiting',
+    capSumo: 'SUMO · top-down view', capHd: 'HDMap condition video · Cosmos toolkit', excluded: 'dropped', excludedBySumo: 'Dropped by the SUMO check', pending: 'Waiting',
+    ego: 'Ego', minDist: 'Min distance', yieldLbl: 'Yielded',
+    osc: 'Download OpenSCENARIO', oscTip: 'OpenSCENARIO 1.1 (.xosc) + OpenDRIVE 1.6 (.xodr), replaying the SUMO trajectories',
+    addToGallery: 'Add to gallery', inGallery: '✓ In the gallery', unpublish: 'Remove', publishFailed: (m) => `Publish failed: ${m}`,
+    approaching: (d, v) => `◀ Ego approaching · ${d} m to the crossing · ${v}`, hdWindow: ' · HDMap window', recentDone: 'done', recentFailed: 'failed', recentRunning: 'running',
+  },
+};
+const params = new URLSearchParams(location.search);
+const LANG = (params.get('lang') || localStorage.getItem('driveAtlasLang') || 'ko') === 'en' ? 'en' : 'ko';
+localStorage.setItem('driveAtlasLang', LANG);
+const L = I18N[LANG];
+document.documentElement.lang = LANG;
+document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = L[el.dataset.i18n]; });
+document.title = LANG === 'en' ? 'SOTIF Scenario Generation' : 'SOTIF 시나리오 생성';
+$id('prompt').placeholder = L.placeholder; $id('count').title = L.count;
+$id('galleryLink').href = LANG === 'en' ? 'gallery-en.html' : 'gallery.html';
+$id('langSwitch').textContent = '🌐 ' + L.langSwitch;
+$id('langSwitch').onclick = (e) => { e.preventDefault(); const p = new URLSearchParams(location.search); p.set('lang', LANG === 'en' ? 'ko' : 'en'); location.search = p.toString(); };
+function $id(id) { return document.getElementById(id); }
+
+const API = '/api/pipeline';
+const STEP_KEYS = ['agent', 'ontology', 'generate', 'sumo', 'rdshq', 'hdmap'];
+const $ = $id;
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = (s) => s == null ? '–' : (s < 60 ? `${s.toFixed(1)}s` : `${Math.floor(s / 60)}m ${Math.round(s % 60)}s`);
+const kmh = (mps) => mps == null ? '–' : `${Math.round(mps * 3.6)} km/h`;
+const yn = (b) => b == null ? '–' : b ? L.yes : L.no;
+let current = null, pollTimer = null, clockTimer = null, data = null, sessionId = null;
+let agentRun = null;          // {prompt, startedAt, finishedAt, trace, text}
+let selectedStep = null;      // null = follow the active step
+const cards = {};             // variantId -> {el, tel, simT, lastTs, video}
+
+L.examples.forEach((text) => {
+  const b = document.createElement('button'); b.className = 'chip'; b.textContent = text;
+  b.onclick = () => { $('prompt').value = text; }; $('examples').appendChild(b);
+});
+
+async function api(path, options) {
+  const res = await fetch(API + path, { headers: { 'content-type': 'application/json' }, ...options });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw Object.assign(new Error(body.detail || res.statusText), { status: res.status });
+  return body;
+}
+
+$('go').onclick = async () => {
+  const message = $('prompt').value.trim();
+  if (!message) return;
+  const n = Number($('count').value);
+  $('go').disabled = true; $('reply').className = 'reply'; $('reply').textContent = L.thinking;
+  agentRun = { prompt: message, startedAt: Date.now() / 1000, trace: null };
+  try {
+    let batchId;
+    try {
+      const out = await api('/chat', { method: 'POST', body: JSON.stringify({ message: `${message}\n${L.variantsSuffix(n)}`, sessionId, lang: LANG }) });
+      sessionId = out.sessionId; batchId = out.batchId;
+      Object.assign(agentRun, { finishedAt: Date.now() / 1000, trace: out.trace || [], text: out.text || out.error || '' });
+      $('reply').textContent = agentRun.text;
+    } catch (e) {
+      if (e.status !== 503) throw e;
+      const out = await api('/batches', { method: 'POST', body: JSON.stringify({ n, focus: message, autoRun: true, lang: LANG }) });
+      batchId = out.batchId;
+      Object.assign(agentRun, { finishedAt: Date.now() / 1000, trace: [], direct: true });
+      $('reply').textContent = L.direct(batchId);
+    }
+    if (batchId) { agentRun.batchId = batchId; open(batchId); }
+    loadRecent();
+  } catch (e) {
+    $('reply').className = 'reply err'; $('reply').textContent = L.error(e.message);
+  } finally { $('go').disabled = false; }
+};
+
+function open(batchId) {
+  current = batchId; data = null; selectedStep = null;
+  Object.keys(cards).forEach((k) => delete cards[k]);
+  $('batch').innerHTML = `<div class="empty">${esc(L.loading)}</div>`;
+  clearInterval(pollTimer); clearInterval(clockTimer);
+  poll(); pollTimer = setInterval(poll, 3000);
+  clockTimer = setInterval(() => data && renderHeader(), 250);
+}
+
+async function poll() {
+  if (!current) return;
+  try {
+    const d = await api(`/batches/${encodeURIComponent(current)}`);
+    if (d.batchId !== current) return;
+    data = d; render();
+    if (d.done) { clearInterval(pollTimer); setTimeout(() => clearInterval(clockTimer), 500); loadRecent(); }
+  } catch (e) { /* keep polling through transient errors */ }
+}
+
+/* ---------- step states ---------- */
+function stageStatus(name) { return (data.timeline.find((t) => t.stage === name)) || null; }
+function stepInfo(key) {
+  const t = (s) => s && s.state;
+  if (key === 'agent') {
+    if (!agentRun || agentRun.batchId !== data.batchId) return { state: 'done', note: L.otherSession };
+    return { state: agentRun.finishedAt ? 'done' : 'running', dur: agentRun.finishedAt ? agentRun.finishedAt - agentRun.startedAt : null,
+             note: agentRun.direct ? L.directRun : L.tools((agentRun.trace || []).length) };
+  }
+  const g = stageStatus('generate');
+  if (key === 'ontology') {
+    const o = data.generation && data.generation.ontology;
+    if (o) return { state: 'done', note: `${o.source === 'neptune' ? 'Neptune' : L.snapshot} · ${L.classes(Object.keys(o.classes).length)}` };
+    // Batches made before the generator recorded the ontology slice: done once generation is done.
+    return { state: t(g) === 'succeeded' ? 'done' : t(g) === 'failed' ? 'failed' : g ? 'running' : 'waiting', note: t(g) === 'succeeded' ? L.noRecord : '' };
+  }
+  if (key === 'hdmap') {
+    const runs = data.timeline.filter((x) => x.stage.startsWith('hdmap-'));
+    if (!runs.length) return { state: 'waiting' };
+    const done = runs.filter((x) => x.state === 'succeeded').length, failed = runs.some((x) => x.state === 'failed');
+    const start = Math.min(...runs.map((x) => x.startedAt || x.submittedAt || Infinity));
+    const end = done === runs.length ? Math.max(...runs.map((x) => x.finishedAt || 0)) : null;
+    return { state: done === runs.length ? 'done' : failed ? 'failed' : 'partial', progress: done / runs.length,
+             dur: end && isFinite(start) ? end - start : null, note: L.videos(done, runs.length) };
+  }
+  const s = stageStatus(key);
+  if (!s) return { state: 'waiting' };
+  const map = { succeeded: 'done', failed: 'failed', running: 'running', submitted: 'running' };
+  return { state: map[s.state] || 'waiting', dur: s.startedAt && s.finishedAt ? s.finishedAt - s.startedAt : null,
+           note: s.state === 'submitted' ? L.queued : '' };
+}
+function activeStep() {
+  const order = STEP_KEYS.map((k) => [k, stepInfo(k).state]);
+  const running = order.find(([, st]) => st === 'running' || st === 'partial' || st === 'failed');
+  if (running) return running[0];
+  const lastDone = [...order].reverse().find(([, st]) => st === 'done');
+  return lastDone ? lastDone[0] : 'agent';
+}
+
+/* ---------- render ---------- */
+function render() {
+  if (!$('batch').querySelector('.steps')) {
+    $('batch').innerHTML = `<div class="meta" id="meta"></div><div class="steps" id="steps"></div><div class="detail" id="detail"></div>
+      <div class="gantt" id="gantt"></div><div class="cards" id="cards"></div>`;
+  }
+  renderHeader(); renderSteps(); renderDetail(); renderGantt(); renderCards();
+}
+function renderHeader() {
+  const now = data.done ? (data.finishedAt || Date.now() / 1000) : Date.now() / 1000;
+  const status = data.done ? (data.error ? L.failedWith(esc(data.error)) : L.complete) : L.inProgress;
+  $('meta').innerHTML = `<div class="clock">${fmt(now - data.createdAt)}</div><div>${L.batch} <b>${esc(data.batchId)}</b></div>
+    <div>${L.focus} <b>${esc(data.focus || '-')}</b></div><div>${L.status} <b>${status}</b></div>`;
+  if (!data.done) renderGantt();
+}
+function renderSteps() {
+  const sel = selectedStep || activeStep();
+  $('steps').innerHTML = STEP_KEYS.map((key, i) => {
+    const info = stepInfo(key), [name, who] = L.steps[key];
+    const cls = { done: 'done', failed: 'failed', running: 'running', partial: 'partial', waiting: '' }[info.state] || '';
+    return `<div class="step ${cls} ${key === sel ? 'sel' : ''}" data-key="${key}" style="--p:${Math.round((info.progress || 0) * 100)}%">
+      <div class="n">${i + 1} · ${esc(who)}</div><div class="t">${esc(name)}</div>
+      <div class="s"><span>${L.state[info.state]}${info.note ? ' · ' + esc(info.note) : ''}</span><span>${info.dur != null ? fmt(info.dur) : ''}</span></div><div class="bar"></div></div>`;
+  }).join('');
+  $('steps').querySelectorAll('.step').forEach((el) => { el.onclick = () => { selectedStep = el.dataset.key === selectedStep ? null : el.dataset.key; renderSteps(); renderDetail(); }; });
+}
+function tagCloud(variants) {
+  const counts = {};
+  variants.forEach((v) => Object.entries(v.ontology || {}).forEach(([cls, inst]) => { const k = `${cls}:${inst}`; counts[k] = (counts[k] || 0) + 1; }));
+  return Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<span>${esc(k.split(':')[1])}<b>${n}</b></span>`).join('');
+}
+function pedText(p) { return (p || []).map((x) => `${esc(x.kind)} ${esc(x.direction)} ${x.departS}s · ${x.speedMps}m/s`).join('<br>'); }
+function renderDetail() {
+  const key = selectedStep || activeStep(), v = data.variants;
+  let html = '';
+  if (key === 'agent') {
+    if (!agentRun || agentRun.batchId !== data.batchId) html = `<h3>${L.dAgentTitle}</h3><p class="sub">${esc(L.dAgentOther(data.focus || '-'))}</p>`;
+    else if (agentRun.direct) html = `<h3>${L.dAgentTitle}</h3><p class="sub">${L.dAgentDirect}</p>`;
+    else html = `<h3>${L.dAgentToolsTitle}</h3><p class="sub">${L.dAgentSub}</p>` +
+      (agentRun.trace || []).map((t) => `<div><span class="state ${t.ok ? 'succeeded' : 'failed'}">${esc(t.tool)}</span> <span style="color:#6f7a90">${t.ms}ms</span><pre>${esc(JSON.stringify(t.input, null, 1))}</pre></div>`).join('');
+  } else if (key === 'ontology') {
+    const o = data.generation && data.generation.ontology;
+    html = `<h3>${L.dOntTitle}</h3><p class="sub">${L.dOntSub}</p>`;
+    if (o) html += `<table><tr><th>${L.colClass}</th><th>${L.colInstances}</th><th>${L.colUsable}</th></tr>${Object.entries(o.classes).map(([c, x]) => `<tr><td>${esc(c)}</td><td class="num">${x.instances}</td><td class="num">${x.usable}</td></tr>`).join('')}</table>
+      <p class="sub" style="margin-top:10px">${L.usedTags}</p><div class="tags">${tagCloud(v)}</div>`;
+    else html += `<p class="sub">${stepInfo('ontology').state === 'done' ? L.oldBatchTags : L.querying}</p><div class="tags">${tagCloud(v)}</div>`;
+  } else if (key === 'generate') {
+    const g = data.generation;
+    html = `<h3>${L.dGenTitle}</h3><p class="sub">${g ? esc(L.genMeta(g)) : L.waitingModel}</p>`;
+    if (v.length) html += `<table><tr><th>${L.colVariant}</th><th>${L.colEgo}</th><th>${L.colPeds}</th><th>${L.colParked}</th><th>${L.colOncoming}</th><th>${L.colWhy}</th></tr>${v.map((x) => `<tr><td>${esc(x.variantId)}</td>
+      <td class="num">${kmh(x.params?.egoSpeedMps)}</td><td class="num">${pedText(x.params?.pedestrians)}</td><td class="num">${x.params?.parkedCount ?? '–'}</td>
+      <td class="num">${x.params?.oncomingPeriodS ? x.params.oncomingPeriodS + 's' : L.none}</td><td>${esc(x.rationale)}</td></tr>`).join('')}</table>`;
+  } else if (key === 'sumo') {
+    html = `<h3>${L.dSumoTitle}</h3><p class="sub">${L.dSumoSub}</p>`;
+    if (v.some((x) => x.sumo)) html += `<table><tr><th>${L.colVariant}</th><th>${L.colLabel}</th><th>${L.colKeep}</th><th>${L.colMinDist}</th><th>${L.colMinTtc}</th><th>${L.colYield}</th><th>${L.colDecel}</th><th>${L.colConflict}</th></tr>${v.map((x) => { const s = x.sumo || {}; return `<tr><td>${esc(x.variantId)}</td>
+      <td class="label-${esc(s.label)}">${esc(s.label ?? '–')}</td><td>${yn(s.keep)}</td><td class="num">${s.minPedDistanceM ?? '–'} m</td>
+      <td class="num">${s.minPedTtcS ?? '–'} s</td><td>${yn(s.yielded)}</td><td class="num">${s.maxDecelMps2 ?? '–'} m/s²</td><td class="num">${s.conflictSeconds ?? '–'} s</td></tr>`; }).join('')}</table>`;
+    else html += `<p class="sub">${L.waitingSim}</p>`;
+  } else if (key === 'rdshq') {
+    html = `<h3>${L.dRdsTitle}</h3><p class="sub">${L.dRdsSub}</p>`;
+    const rows = v.filter((x) => x.rdshq);
+    if (rows.length) html += `<table><tr><th>${L.colVariant}</th><th>${L.colWindow}</th><th>${L.colPoses}</th><th>${L.colBoxes}</th><th>${L.colObjects}</th><th>${L.colMap}</th></tr>${rows.map((x) => { const r = x.rdshq; return `<tr><td>${esc(x.variantId)}</td>
+      <td class="num">${r.simWindowS?.[0]}–${r.simWindowS?.[1]} s</td><td class="num">${r.poseFrames30Hz}</td><td class="num">${r.boxFrames10Hz}</td>
+      <td>${Object.entries(r.boxCounts || {}).map(([k, n]) => `${esc(k)} ${n}`).join(', ')}</td><td>${Object.entries(r.map || {}).map(([k, n]) => `${esc(k)} ${n}`).join(', ')}</td></tr>`; }).join('')}</table>`;
+    else html += `<p class="sub">${L.waitingConv}</p>`;
+  } else if (key === 'hdmap') {
+    html = `<h3>${L.dHdTitle}</h3><p class="sub">${L.dHdSub}</p>
+      <table><tr><th>${L.colVariant}</th><th>${L.colState}</th><th>${L.colRender}</th></tr>${v.filter((x) => x.hdmap).map((x) => `<tr><td>${esc(x.variantId)}</td><td><span class="state ${esc(x.hdmap)}">${esc(x.hdmap)}</span></td><td class="num">${fmt(x.hdmapSeconds)}</td></tr>`).join('') || `<tr><td colspan="3">${L.waiting}</td></tr>`}</table>`;
+  }
+  $('detail').innerHTML = html;
+}
+function renderGantt() {
+  const now = data.done ? (data.finishedAt || Date.now() / 1000) : Date.now() / 1000;
+  const t0 = data.createdAt, span = Math.max(now - t0, 10);
+  $('gantt').innerHTML = data.timeline.map((t) => {
+    const start = t.startedAt || t.submittedAt || now, end = t.finishedAt || now;
+    const left = ((start - t0) / span) * 100, width = Math.max(((end - start) / span) * 100, 0.6);
+    const name = t.stage.startsWith('hdmap-') ? `HDMap · ${t.stage.slice(6)}` : (L.lane[t.stage] || t.stage);
+    return `<div class="lane"><div class="name" title="${esc(name)}">${esc(name)}</div><div class="track"><div class="gbar ${esc(t.state)}" style="left:${left}%;width:${width}%"></div></div>
+      <div class="dur">${t.startedAt ? fmt(end - t.startedAt) : L.laneWaiting}</div></div>`;
+  }).join('');
+}
+function renderCards() {
+  const box = $('cards');
+  data.variants.forEach((v) => {
+    let c = cards[v.variantId];
+    if (!c) {
+      const el = document.createElement('div'); el.className = 'card';
+      el.innerHTML = `<div class="head"><span class="id"></span><span class="pub"></span><span class="judgeHead"></span></div>
+        <div class="views"><div class="view sumo"><canvas width="640" height="352"></canvas><span class="cap">${esc(L.capSumo)}</span></div>
+        <div class="view hd"><span>${esc(L.pending)}</span></div></div><div class="body"><div class="why"></div><div class="tags"></div><div class="judge"></div></div>`;
+      box.appendChild(el);
+      c = cards[v.variantId] = { el, tel: null, telLoading: false, simT: 0, lastTs: 0, video: null };
+      el.querySelector('canvas').onclick = () => { c.simT = 0; };
+      requestAnimationFrame((ts) => tick(c, ts));
+    }
+    const s = v.sumo || {};
+    c.el.querySelector('.id').textContent = v.variantId;
+    c.el.querySelector('.judgeHead').innerHTML = v.sumo ? `<span class="label-${esc(s.label)}">${esc(s.label)}</span> ${s.keep ? '' : '· ' + L.excluded}` : '';
+    c.el.querySelector('.why').textContent = v.rationale || '';
+    renderPublish(c.el.querySelector('.pub'), v);
+    c.el.querySelector('.tags').innerHTML = Object.values(v.ontology || {}).map((x) => `<span>${esc(x)}</span>`).join('');
+    c.el.querySelector('.judge').innerHTML = v.sumo ? `<span>${L.ego} <b>${kmh(v.params?.egoSpeedMps)}</b></span><span>${L.minDist} <b>${s.minPedDistanceM ?? '–'} m</b></span>
+      <span>TTC <b>${s.minPedTtcS ?? '–'} s</b></span><span>${L.yieldLbl} <b>${yn(s.yielded)}</b></span>`
+      + (v.openscenarioUrl ? `<a class="osc" href="${esc(v.openscenarioUrl)}" title="${esc(L.oscTip)}">${esc(L.osc)}</a>` : '') : '';
+    c.window = v.rdshq?.simWindowS || null;
+    if (v.sumo && !c.tel && !c.telLoading) {
+      c.telLoading = true;
+      api(`/batches/${encodeURIComponent(data.batchId)}/variants/${encodeURIComponent(v.variantId)}/telemetry`).then((t) => { c.tel = t; }).catch(() => { c.telLoading = false; });
+    }
+    const hd = c.el.querySelector('.view.hd');
+    if (v.videoUrl && !c.video) {
+      hd.innerHTML = `<video muted loop autoplay playsinline>${v.webmUrl ? `<source src="${esc(v.webmUrl)}" type="video/webm">` : ''}<source src="${esc(v.videoUrl)}" type="video/mp4"></video><span class="cap">${esc(L.capHd)}</span>`;
+      c.video = hd.querySelector('video');
+    } else if (!v.videoUrl) {
+      hd.innerHTML = `<span>${v.hdmap ? 'HDMap ' + esc(v.hdmap) : esc(s.keep === false ? L.excludedBySumo : L.pending)}</span>`;
+    }
+  });
+}
+
+function renderPublish(box, v) {
+  if (v.hdmap !== 'succeeded') { box.innerHTML = ''; return; }
+  const galleryPage = LANG === 'en' ? 'gallery-en.html' : 'gallery.html';
+  const key = `${v.published}`;
+  if (box.dataset.state === key) return;          // keep the buttons stable between polls
+  box.dataset.state = key;
+  box.innerHTML = v.published
+    ? `<a href="${galleryPage}#published">${esc(L.inGallery)}</a><button class="quiet" data-act="del">${esc(L.unpublish)}</button>`
+    : `<button data-act="add">${esc(L.addToGallery)}</button>`;
+  box.querySelector('button').onclick = async (e) => {
+    e.target.disabled = true;
+    try {
+      if (e.target.dataset.act === 'add') await api('/gallery', { method: 'POST', body: JSON.stringify({ batchId: data.batchId, variantId: v.variantId }) });
+      else await fetch(`${API}/gallery/${encodeURIComponent(data.batchId)}/${encodeURIComponent(v.variantId)}`, { method: 'DELETE' });
+      await poll();
+    } catch (err) { box.dataset.state = ''; alert(L.publishFailed(err.message)); }
+  };
+}
+
+/* ---------- top-down SUMO view ---------- */
+const VIEW = { x0: 170, x1: 230 };   // metres around the crossing (x=200); one scale for x and y so boxes keep their shape
+function tick(c, ts) {
+  if (!document.body.contains(c.el)) return;
+  const dt = c.lastTs ? (ts - c.lastTs) / 1000 : 0; c.lastTs = ts;
+  if (c.tel) {
+    const frames = c.tel.frames, end = frames[frames.length - 1].t;
+    if (c.video && !c.video.paused && c.window) c.simT = c.window[0] + c.video.currentTime;   // follow the HDMap video
+    else { c.simT += dt * 1.5; if (c.simT > end) c.simT = frames[0].t; }
+    draw(c);
+  }
+  requestAnimationFrame((t) => tick(c, t));
+}
+function draw(c) {
+  const cv = c.el.querySelector('canvas'), g = cv.getContext('2d'), W = cv.width, H = cv.height;
+  const sx = W / (VIEW.x1 - VIEW.x0), sy = sx, yTop = H / sy / 2;
+  const X = (x) => (x - VIEW.x0) * sx, Y = (y) => (yTop - y) * sy;
+  g.fillStyle = '#0b1322'; g.fillRect(0, 0, W, H);
+  g.fillStyle = '#2a3142'; g.fillRect(0, Y(9), W, Y(7) - Y(9)); g.fillRect(0, Y(-7), W, Y(-9) - Y(-7));     // sidewalks
+  g.fillStyle = '#151b27'; g.fillRect(0, Y(7), W, Y(-7) - Y(7));                                          // carriageway
+  g.strokeStyle = '#d9b44a'; g.lineWidth = 2; g.setLineDash([]); g.beginPath(); g.moveTo(0, Y(0.12)); g.lineTo(W, Y(0.12)); g.moveTo(0, Y(-0.12)); g.lineTo(W, Y(-0.12)); g.stroke();
+  g.strokeStyle = '#8b93a7'; g.lineWidth = 1.5; g.setLineDash([12, 12]); g.beginPath(); g.moveTo(0, Y(3.5)); g.lineTo(W, Y(3.5)); g.moveTo(0, Y(-3.5)); g.lineTo(W, Y(-3.5)); g.stroke(); g.setLineDash([]);
+  g.fillStyle = '#e8eaed'; for (let y = -7; y < 7; y += 1) g.fillRect(X(198.25), Y(y + 0.5), X(201.75) - X(198.25), Y(y) - Y(y + 0.5));  // zebra
+  const frames = c.tel.frames, step = c.tel.stepS, i = Math.max(0, Math.min(frames.length - 1, Math.round((c.simT - frames[0].t) / step)));
+  const f = frames[i];
+  const box = (x, y, h, l, w, fill) => { g.save(); g.translate(X(x), Y(y)); g.rotate(-h * Math.PI / 180); g.fillStyle = fill; g.fillRect(-l / 2 * sx, -w / 2 * sy, l * sx, w * sy); g.restore(); };
+  f.actors.forEach(([id, type, sub, x, y, h, l, w]) => {
+    if (type === 'pedestrian') { g.fillStyle = '#ff6b6b'; g.beginPath(); g.arc(X(x), Y(y), Math.max(4, 0.5 * sx), 0, 7); g.fill(); }
+    else box(x, y, h, l || 4.8, w || 1.8, sub === 'parked' ? '#4a5268' : '#d0a35a');
+  });
+  if (f.ego) {
+    const [x, y, h, v] = f.ego;
+    if (x < VIEW.x0) {
+      const label = L.approaching(Math.round(200 - x), kmh(v));
+      g.font = '13px sans-serif'; g.fillStyle = 'rgba(5,7,13,.8)'; g.fillRect(6, Y(-5.25) - 12, g.measureText(label).width + 10, 18);
+      g.fillStyle = '#8a9bf5'; g.fillText(label, 11, Y(-5.25) + 2);
+    }
+    else box(x, y, h, 4.8, 1.8, '#667eea');
+  }
+  const inWin = c.window && c.simT >= c.window[0] && c.simT <= c.window[1];
+  g.fillStyle = 'rgba(5,7,13,.75)'; g.fillRect(W - 250, H - 26, 246, 22);
+  g.fillStyle = '#cfd6e4'; g.font = '12px sans-serif';
+  g.fillText(`t = ${f.t.toFixed(1)} s · ${L.ego} ${f.ego ? kmh(f.ego[3]) : '–'}${inWin ? L.hdWindow : ''}`, W - 242, H - 10);
+}
+
+async function loadRecent() {
+  try {
+    const { batches } = await api('/batches');
+    $('recent').innerHTML = batches.slice(0, 10).map((b) =>
+      `<div data-id="${esc(b.batchId)}"><span>${esc(b.focus || b.batchId)}</span><span>${b.done ? (b.error ? L.recentFailed : L.recentDone) : L.recentRunning}</span></div>`).join('');
+    $('recent').querySelectorAll('div[data-id]').forEach((el) => { el.onclick = () => open(el.dataset.id); });
+  } catch (e) { $('recent').textContent = L.apiDown; }
+}
+loadRecent();
+const fromUrl = params.get('batch');
+if (fromUrl) open(fromUrl);
+</script>
+</body>
+</html>

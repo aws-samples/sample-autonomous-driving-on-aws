@@ -1,0 +1,487 @@
+{
+ "DrivingBehavior": [
+  {
+   "id": "CutIn",
+   "relations": {
+    "triggers": [
+     "RearEndCollision",
+     "UnnecessaryBraking"
+    ]
+   }
+  },
+  {
+   "id": "DoorOpening",
+   "relations": {
+    "triggers": [
+     "CollisionWithVRU"
+    ]
+   }
+  },
+  {
+   "id": "EmergencyManeuver",
+   "relations": {}
+  },
+  {
+   "id": "Jaywalking",
+   "relations": {
+    "triggers": [
+     "CollisionWithVRU"
+    ]
+   }
+  },
+  {
+   "id": "NormalDriving",
+   "relations": {}
+  },
+  {
+   "id": "ObstacleEvasiveManeuver",
+   "relations": {}
+  },
+  {
+   "id": "RescueAlleyFormation",
+   "relations": {}
+  },
+  {
+   "id": "Reversing",
+   "relations": {}
+  },
+  {
+   "id": "RunningRedLight",
+   "relations": {
+    "triggers": [
+     "HeadOnCollision"
+    ]
+   }
+  },
+  {
+   "id": "SuddenBraking",
+   "relations": {
+    "triggers": [
+     "RearEndCollision"
+    ]
+   }
+  },
+  {
+   "id": "TrafficRuleViolation",
+   "relations": {}
+  },
+  {
+   "id": "UnsignaledLaneChange",
+   "relations": {}
+  },
+  {
+   "id": "WrongWayDriving",
+   "relations": {
+    "triggers": [
+     "HeadOnCollision"
+    ]
+   }
+  }
+ ],
+ "EgoState": [
+  {
+   "id": "HighSpeed",
+   "relations": {
+    "requires": [
+     "ObjectDetection"
+    ],
+    "triggers": [
+     "RearEndCollision"
+    ]
+   }
+  },
+  {
+   "id": "LowSpeed",
+   "relations": {
+    "requires": [
+     "ObjectDetection"
+    ]
+   }
+  },
+  {
+   "id": "MediumSpeed",
+   "relations": {}
+  },
+  {
+   "id": "Stationary",
+   "relations": {}
+  }
+ ],
+ "FunctionalInsufficiency": [
+  {
+   "id": "ContourMatchingError",
+   "relations": {}
+  },
+  {
+   "id": "FalseNegative",
+   "relations": {
+    "triggers": [
+     "CollisionWithVRU",
+     "RearEndCollision"
+    ]
+   }
+  },
+  {
+   "id": "FalsePositive",
+   "relations": {
+    "triggers": [
+     "UnnecessaryBraking"
+    ]
+   }
+  },
+  {
+   "id": "IntentPredictionError",
+   "relations": {}
+  },
+  {
+   "id": "LateDetection",
+   "relations": {
+    "triggers": [
+     "RearEndCollision"
+    ]
+   }
+  },
+  {
+   "id": "MisclassificationError",
+   "relations": {
+    "triggers": [
+     "CollisionWithVRU"
+    ]
+   }
+  },
+  {
+   "id": "PositionError",
+   "relations": {}
+  },
+  {
+   "id": "TrackingLoss",
+   "relations": {}
+  },
+  {
+   "id": "VelocityEstimationError",
+   "relations": {}
+  }
+ ],
+ "HazardousEvent": [
+  {
+   "id": "CollisionWithVRU",
+   "relations": {}
+  },
+  {
+   "id": "HeadOnCollision",
+   "relations": {}
+  },
+  {
+   "id": "LaneDeparture",
+   "relations": {}
+  },
+  {
+   "id": "RearEndCollision",
+   "relations": {}
+  },
+  {
+   "id": "RearEndedByTrailingVehicle",
+   "relations": {
+    "requires": [
+     "SuddenBraking"
+    ]
+   }
+  },
+  {
+   "id": "UnintendedAcceleration",
+   "relations": {}
+  },
+  {
+   "id": "UnnecessaryBraking",
+   "relations": {}
+  }
+ ],
+ "LightingCondition": [
+  {
+   "id": "DirectSunGlare",
+   "relations": {
+    "degrades": [
+     "Camera",
+     "LaneDetection"
+    ],
+    "triggers": [
+     "FalseNegative"
+    ]
+   }
+  },
+  {
+   "id": "LowLightDusk",
+   "relations": {
+    "degrades": [
+     "Camera"
+    ]
+   }
+  },
+  {
+   "id": "LowSunAngle",
+   "relations": {
+    "degrades": [
+     "Camera"
+    ]
+   }
+  },
+  {
+   "id": "NighttimeDark",
+   "relations": {
+    "degrades": [
+     "Camera",
+     "ObjectDetection"
+    ],
+    "triggers": [
+     "FalseNegative"
+    ]
+   }
+  },
+  {
+   "id": "OncomingHeadlight",
+   "relations": {
+    "degrades": [
+     "Camera"
+    ]
+   }
+  },
+  {
+   "id": "RapidIlluminationChange",
+   "relations": {
+    "degrades": [
+     "Camera"
+    ]
+   }
+  },
+  {
+   "id": "Streetlight",
+   "relations": {}
+  },
+  {
+   "id": "TunnelEntry",
+   "relations": {
+    "degrades": [
+     "Camera",
+     "LaneDetection"
+    ]
+   }
+  },
+  {
+   "id": "TunnelExit",
+   "relations": {}
+  },
+  {
+   "id": "WetRoadReflection",
+   "relations": {
+    "requires": [
+     "WetRoad"
+    ],
+    "triggers": [
+     "FalseNegative"
+    ]
+   }
+  }
+ ],
+ "OcclusionState": [
+  {
+   "id": "FullOcclusion",
+   "relations": {
+    "degrades": [
+     "Lidar"
+    ],
+    "triggers": [
+     "FalseNegative"
+    ]
+   }
+  },
+  {
+   "id": "NoOcclusion",
+   "relations": {}
+  },
+  {
+   "id": "PartialOcclusion",
+   "relations": {
+    "triggers": [
+     "FalseNegative",
+     "LateDetection"
+    ]
+   }
+  }
+ ],
+ "StaticObject": [
+  {
+   "id": "AnimalCarcass",
+   "relations": {}
+  },
+  {
+   "id": "ConstructionBarrier",
+   "relations": {}
+  },
+  {
+   "id": "DamagedVehicleOnShoulder",
+   "relations": {
+    "located_on": [
+     "Highway"
+    ],
+    "triggers": [
+     "LaneDeparture"
+    ]
+   }
+  },
+  {
+   "id": "DroppedCargo",
+   "relations": {}
+  },
+  {
+   "id": "FallenTree",
+   "relations": {}
+  },
+  {
+   "id": "Manhole",
+   "relations": {
+    "triggers": [
+     "UnnecessaryBraking"
+    ]
+   }
+  },
+  {
+   "id": "ParkedVehicle",
+   "relations": {
+    "occludes": [
+     "ChildPedestrian",
+     "Cyclist"
+    ]
+   }
+  },
+  {
+   "id": "Pothole",
+   "relations": {}
+  },
+  {
+   "id": "RoadDebris",
+   "relations": {
+    "degrades": [
+     "FreespaceDetection"
+    ]
+   }
+  },
+  {
+   "id": "SpeedBump",
+   "relations": {
+    "triggers": [
+     "UnnecessaryBraking"
+    ]
+   }
+  },
+  {
+   "id": "TireFragment",
+   "relations": {}
+  },
+  {
+   "id": "TrafficCone",
+   "relations": {}
+  }
+ ],
+ "VRU": [
+  {
+   "id": "AdultPedestrian",
+   "relations": {}
+  },
+  {
+   "id": "ChildPedestrian",
+   "relations": {
+    "degrades": [
+     "ObjectDetection"
+    ]
+   }
+  },
+  {
+   "id": "Cyclist",
+   "relations": {}
+  },
+  {
+   "id": "EScooterRider",
+   "relations": {
+    "degrades": [
+     "ObjectDetection"
+    ]
+   }
+  },
+  {
+   "id": "PedestrianWithStroller",
+   "relations": {}
+  },
+  {
+   "id": "WheelchairUser",
+   "relations": {}
+  }
+ ],
+ "WeatherCondition": [
+  {
+   "id": "ClearWeather",
+   "relations": {
+    "has_property": [
+     "Sensor"
+    ]
+   }
+  },
+  {
+   "id": "CloudyWeather",
+   "relations": {}
+  },
+  {
+   "id": "Fog",
+   "relations": {
+    "degrades": [
+     "Camera",
+     "Lidar"
+    ],
+    "triggers": [
+     "LateDetection"
+    ]
+   }
+  },
+  {
+   "id": "Hail",
+   "relations": {}
+  },
+  {
+   "id": "HeavyRain",
+   "relations": {
+    "degrades": [
+     "Camera",
+     "Lidar"
+    ],
+    "has_property": [
+     "StandingWater"
+    ],
+    "triggers": [
+     "FalseNegative",
+     "SprayFromVehicle"
+    ]
+   }
+  },
+  {
+   "id": "LightRain",
+   "relations": {}
+  },
+  {
+   "id": "Snow",
+   "relations": {
+    "degrades": [
+     "Camera",
+     "LaneDetection",
+     "Lidar"
+    ]
+   }
+  },
+  {
+   "id": "StrongSideWind",
+   "relations": {
+    "triggers": [
+     "LaneDeparture"
+    ]
+   }
+  }
+ ]
+}

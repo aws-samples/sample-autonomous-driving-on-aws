@@ -1,0 +1,17 @@
+{
+  "app": ".venv/bin/python app.py",
+  "watch": {
+    "include": [
+      "app.py",
+      "drive_atlas_infra/**"
+    ]
+  },
+  "context": {
+    "drive-atlas:region": "ap-northeast-2",
+    "drive-atlas:vpcCidr": "10.42.0.0/16",
+    "@aws-cdk/aws-ec2:restrictDefaultSecurityGroup": true,
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:enablePartitionLiterals": true,
+    "@aws-cdk/core:defaultCrossStackReferences": "strong"
+  }
+}

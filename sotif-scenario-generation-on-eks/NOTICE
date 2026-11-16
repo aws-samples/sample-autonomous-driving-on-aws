@@ -1,0 +1,57 @@
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+This sample does not vendor third-party code or model weights. The components
+below are downloaded at build time or used at run time from their original
+sources and are governed by their own licenses.
+
+Fetched when the container images are built:
+- Cosmos-Drive-Dreams (https://github.com/nv-tlabs/Cosmos-Drive-Dreams),
+  Apache License 2.0. Cloned unmodified at a pinned commit
+  (docker/cosmos-hdmap/Dockerfile); its render_from_rds_hq.py renders the
+  HDMap condition videos on CPU.
+- Eclipse SUMO (https://eclipse.dev/sumo/), Eclipse Public License 2.0
+  (secondary license GPL-2.0-or-later). Installed from its official PyPI
+  packages eclipse-sumo, traci and sumolib, pinned to 1.28.0
+  (docker/pipeline/Dockerfile).
+- Python packages installed from PyPI and the PyTorch index (for example
+  PyTorch, NumPy, WebDataset, FastAPI, Uvicorn, boto3, the Kubernetes Python
+  client; the full list for the HDMap image is
+  docker/cosmos-hdmap/requirements.lock.txt), and the Debian packages of the
+  public.ecr.aws/docker/library/python base images, each under its own license.
+
+Ontology content (sotif/):
+- sotif/ontology.nt and sotif/provenance.json contain relations and short
+  evidence notes derived from the following papers, licensed under Creative
+  Commons Attribution 4.0 International
+  (https://creativecommons.org/licenses/by/4.0/). Changes were made: facts
+  were restated as RDF triples and evidence notes were shortened or
+  translated. Details: sotif/SOURCES.md.
+  - Adee, Gansch, Liggesmeyer, Glaeser, Drews. "Discovery of Perception
+    Performance Limiting Triggering Conditions in Automated Driving." 2023.
+    https://arxiv.org/abs/2303.04037
+  - Adee, Gansch, Liggesmeyer. "Systematic Modeling Approach for
+    Environmental Perception Limitations in Automated Driving." 2023.
+    https://arxiv.org/abs/2303.04029
+  - Conrad, Schildbach. "Analysis of Functional Insufficiencies and
+    Triggering Conditions to Improve the SOTIF of an MPC-based Trajectory
+    Planner." 2024. https://arxiv.org/abs/2407.21569
+  - Shakeri. "Formalization of Operational Domain and Operational Design
+    Domain for Automated Vehicles." 2024. https://arxiv.org/abs/2408.14481
+  - Ma, Zhong, Shi. "ICanC: Improving Camera-based Object Detection and
+    Energy Consumption in Low-Illumination Environments." 2025.
+    https://arxiv.org/abs/2503.00709
+  - Brown, Perez, Shan, Worrall. "Multi-Modal Camera-Based Detection of
+    Vulnerable Road Users." 2025. https://arxiv.org/abs/2509.06333
+  - Sultana, Ahmed, Paul, Islam, Ahmad. "Vision-Based Robust Lane Detection
+    and Tracking under Different Challenging Environmental Conditions." 2022.
+    https://arxiv.org/abs/2210.10233
+- No text from ISO 21448, ISO 34502 or Euro NCAP documents is included.
+
+Web assets (web/aws-icons/):
+- AWS Architecture Icons (https://aws.amazon.com/architecture/icons/), used
+  as provided by AWS for architecture diagrams.
+
+Models used through Amazon Bedrock (Anthropic Claude) are accessed as a
+service; no model weights are included or downloaded. Review each license
+and the applicable service terms before using these components in your own
+environment.

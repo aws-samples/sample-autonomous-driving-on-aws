@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetic Scenario Generation on AWS</title>
+    <script src="scenario-data-en.js"></script>
+    <script src="variant-data.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 100%);
+            color: #e8eaed;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1600px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 60px; }
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 16px; color: #9aa0a6; }
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 14px;
+        }
+        .lang-switch a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .lang-switch a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+        .arch-section {
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        .arch-title { text-align: center; font-size: 24px; font-weight: 600; color: #232F3E; margin-bottom: 32px; }
+        .pipeline-row {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px;
+            padding: 24px; background: #f9f9f9; border-radius: 8px;
+        }
+        .service-box {
+            flex: 1; text-align: center; padding: 20px; background: white;
+            border: 2px solid #e1e4e8; border-radius: 8px; margin: 0 8px; cursor: pointer;
+            transition: all 0.2s; min-height: 200px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; position: relative;
+        }
+        .service-box:hover { border-color: #FF9900; box-shadow: 0 4px 12px rgba(255, 153, 0, 0.2); transform: translateY(-2px); }
+        .stage-badge {
+            position: absolute; top: -12px; left: 12px; background: #FF9900; color: white;
+            width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 14px; font-weight: 700;
+        }
+        .service-icon { width: 64px; height: 64px; margin-bottom: 12px; }
+        .service-name { font-size: 16px; font-weight: 700; color: #232F3E; margin-bottom: 4px; }
+        .service-label { font-size: 12px; color: #666; margin-bottom: 12px; }
+        .service-output { font-size: 20px; font-weight: 700; color: #FF9900; margin-top: 8px; }
+        .service-output-label { font-size: 11px; color: #888; }
+        .arrow { flex: 0 0 60px; text-align: center; }
+        .arrow-symbol { font-size: 32px; color: #FF9900; font-weight: bold; }
+        .arrow-label { font-size: 10px; color: #666; margin-top: 4px; }
+        .support-section { margin-top: 48px; padding: 24px; background: #f0f3f5; border-radius: 8px; }
+        .support-title { font-size: 14px; color: #232F3E; font-weight: 600; margin-bottom: 16px; text-transform: uppercase; }
+        .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; }
+        .support-item { text-align: center; padding: 12px; background: white; border: 1px solid #d1d5da; border-radius: 6px; }
+        .support-icon { width: 48px; height: 48px; margin: 0 auto 8px; }
+        .support-name { font-size: 11px; color: #232F3E; font-weight: 600; }
+        .legend { margin-top: 32px; padding: 20px; background: #fff8e1; border-left: 4px solid #FF9900; border-radius: 4px; }
+        .legend-title { font-size: 13px; font-weight: 700; color: #232F3E; margin-bottom: 8px; }
+        .legend-text { font-size: 12px; color: #666; line-height: 1.6; }
+        .scenario-section {
+            background: rgba(26, 31, 46, 0.6); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 32px;
+        }
+        .section-header { text-align: center; margin-bottom: 32px; }
+        .section-header h2 { font-size: 24px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .section-header p { font-size: 14px; color: #9aa0a6; }
+        .scenario-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .scenario-card {
+            background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .scenario-card:hover { transform: translateY(-4px); border-color: rgba(102, 126, 234, 0.5); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); }
+        .scenario-name { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .scenario-desc { font-size: 13px; color: #9aa0a6; line-height: 1.5; margin-bottom: 12px; }
+        .scenario-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .scenario-tag {
+            background: rgba(102, 126, 234, 0.15); color: #8b9cff; padding: 4px 10px;
+            border-radius: 4px; font-size: 11px; font-weight: 500;
+        }
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); overflow-y: auto;
+        }
+        .modal.active { display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+        .modal-content {
+            background: linear-gradient(135deg, #1a1f2e 0%, #252a3a 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 20px;
+            max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 40px; position: relative;
+        }
+        .close-btn {
+            position: absolute; top: 20px; right: 30px; font-size: 32px; color: #9aa0a6;
+            cursor: pointer; border: none; background: none;
+        }
+        .close-btn:hover { color: #fff; }
+        .modal-content h2 { color: #fff; margin-bottom: 12px; font-size: 28px; }
+        .modal-content h3 { color: #FF9900; margin: 24px 0 12px; font-size: 18px; }
+        .modal-content p { color: #9aa0a6; margin-bottom: 16px; line-height: 1.6; }
+        .video-player { width: 100%; border-radius: 12px; margin: 20px 0; background: #000; }
+        .data-box {
+            background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; padding: 16px; font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px; color: #8b9cff; margin: 12px 0; white-space: pre-wrap;
+        }
+        .data-section { margin: 20px 0; }
+        .data-section-title {
+            font-size: 16px; font-weight: 700; color: #FF9900;
+            margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(255, 153, 0, 0.3);
+        }
+        @media (max-width: 1200px) {
+            .pipeline-row { flex-direction: column; }
+            .service-box { margin: 8px 0; }
+            .arrow { transform: rotate(90deg); margin: 12px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <a href="index.html?lang=en">▶ Scenario generation</a>
+            <a href="gallery.html">🌐 한국어</a>
+        </div>
+        <header>
+            <h1>Synthetic Scenario Generation on AWS</h1>
+            <p class="subtitle">SOTIF Ontology-based Autonomous Driving Scenario Generation Pipeline</p>
+        </header>
+
+        <div class="arch-section">
+            <div id="svgContainer" style="text-align:center; margin:20px 0;">
+                <!-- SVG will be loaded here -->
+            </div>
+            <div style="text-align:center; margin-top:20px; padding:16px; background:rgba(26, 31, 46, 0.6); border:1px solid rgba(102, 126, 234, 0.3); border-radius:8px;">
+                <p style="color:#9aa0a6; font-size:13px; line-height:1.6; margin:0;">
+                    💡 <strong style="color:#e8eaed;">Tip:</strong> Click each stage box for detailed explanations · Click scenario cards to view condition videos
+                </p>
+            </div>
+        </div>
+
+        <div class="scenario-section">
+            <div class="section-header">
+                <h2 id="builtinTitle"></h2>
+                <p>Euro NCAP + SOTIF Reference Mapping · Click to View Videos</p>
+            </div>
+            <div class="scenario-grid" id="scenarioGrid"></div>
+        </div>
+    </div>
+
+    <div id="stageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('stageModal')">&times;</span>
+            <h2 id="stageModalTitle"></h2>
+            <p id="stageModalSubtitle"></p>
+            <div id="stageModalBody"></div>
+        </div>
+    </div>
+
+    <div id="scenarioModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('scenarioModal')">&times;</span>
+            <h2 id="scenarioModalTitle"></h2>
+            <p id="scenarioModalSubtitle"></p>
+            <div id="scenarioModalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load SVG and add click events
+        fetch('pipeline-diagram-en.svg')
+            .then(response => response.text())
+            .then(svgText => {
+                const container = document.getElementById('svgContainer');
+                container.innerHTML = svgText;
+
+                // Add click events to stages
+                const svg = container.querySelector('svg');
+                if (svg) {
+                    for (let i = 1; i <= 5; i++) {
+                        const stage = svg.querySelector(`#stage${i}`);
+                        if (stage) {
+                            stage.style.cursor = 'pointer';
+                            stage.addEventListener('click', () => showStageDetail(i));
+                        }
+                    }
+                }
+            });
+
+        const scenarioGrid = document.getElementById('scenarioGrid');
+        // Built-in scenarios ship only with their local videos (web/media/gallery); without them the section is hidden.
+        document.getElementById('builtinTitle').textContent = `${SCENARIOS.length} Generated Scenarios`;
+        if (!SCENARIOS.length) scenarioGrid.closest('.scenario-section').style.display = 'none';
+        SCENARIOS.forEach(scenario => {
+            const card = document.createElement('div');
+            card.className = 'scenario-card';
+            card.onclick = () => showScenarioDetail(scenario);
+
+            const tags = [];
+            if (scenario.ncap) tags.push(`NCAP: ${scenario.ncap}`);
+            if (scenario.sotif) tags.push(`SOTIF: ${scenario.sotif}`);
+            if (scenario.vru) tags.push(scenario.vru.replace('Pedestrian', '').replace('With', '+'));
+            if (scenario.speed) tags.push(scenario.speed.replace('Speed', ''));
+
+            card.innerHTML = `
+                <div class="scenario-name">${scenario.name}</div>
+                <div class="scenario-desc">${scenario.desc}</div>
+                <div class="scenario-tags">
+                    ${tags.map(tag => `<span class="scenario-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+            scenarioGrid.appendChild(card);
+        });
+
+        function showScenarioDetail(scenario) {
+            const modal = document.getElementById('scenarioModal');
+            const title = document.getElementById('scenarioModalTitle');
+            const subtitle = document.getElementById('scenarioModalSubtitle');
+            const body = document.getElementById('scenarioModalBody');
+
+            title.textContent = scenario.name;
+            subtitle.textContent = scenario.desc;
+
+            // Get Generated Parameters
+            const variantData = VARIANT_DATA[scenario.id] || {};
+            const speedRange = SPEED_RANGES[scenario.speed] || {};
+
+            // Format pedestrian information
+            let pedInfo = '';
+            if (variantData.pedestrians && variantData.pedestrians.length > 0) {
+                pedInfo = variantData.pedestrians.map((p, i) => `
+Pedestrian ${i + 1}: ${p.kind}
+  - Speed: ${p.speedMps} m/s (${p.speedKmh} km/h)
+  - Departure time: ${p.departS}s
+  - Approach distance: ${p.approachM}m
+  - Direction: ${p.direction}`).join('\n');
+            }
+
+            body.innerHTML = `
+                <div style="margin-bottom:20px;">
+                    ${scenario.ncap ? `<span class="scenario-tag" style="background:#FF9900; color:#fff; padding:8px 16px;">Euro NCAP: ${scenario.ncap}</span>` : ''}
+                    ${scenario.sotif ? `<span class="scenario-tag" style="background:#667eea; color:#fff; padding:8px 16px; margin-left:8px;">SOTIF: ${scenario.sotif}</span>` : ''}
+                </div>
+                <video class="video-player" controls autoplay loop>
+                    <source src="media/gallery/${scenario.id}.mp4" type="video/mp4">
+                </video>
+
+                <h3>📊 Generated Parameters</h3>
+                <div class="data-box">Ego Vehicle:
+  Speed: ${variantData.egoSpeedMps || '?'} m/s (${variantData.egoSpeedKmh || '?'} km/h)
+  ${speedRange.minKmh ? `  Range: ${scenario.speed} (${speedRange.minKmh}-${speedRange.maxKmh} km/h)` : ''}
+
+${pedInfo}
+
+Parked vehicles: ${variantData.parkedCount !== undefined ? variantData.parkedCount + ' vehicles' : '?'}
+Occlusion status: ${scenario.occlusion}</div>
+
+                <h3>🎭 Ontology Conditions</h3>
+                <div class="data-box">VRU: ${scenario.vru}
+EgoState: ${scenario.speed}
+OcclusionState: ${scenario.occlusion}
+${scenario.light ? 'LightingCondition: ' + scenario.light : ''}
+${scenario.weather ? 'WeatherCondition: ' + scenario.weather : ''}</div>
+
+                <h3>💡 Interpretation</h3>
+                <div class="data-box">• Ego vehicle approaching at ${variantData.egoSpeedKmh || '?'} km/h
+${variantData.pedestrians && variantData.pedestrians.length > 0 ? `• ${variantData.pedestrians[0].kind} starts crossing at ${variantData.pedestrians[0].departS}s at ${variantData.pedestrians[0].speedKmh} km/h` : ''}
+${variantData.parkedCount > 0 ? `• ${scenario.occlusion} condition caused by ${variantData.parkedCount} parked vehicle(s)` : '• Open environment without occlusion'}
+${scenario.light || scenario.weather ? `• Sensor performance degradation under ${scenario.light || scenario.weather} condition` : ''}</div>
+            `;
+            modal.classList.add('active');
+        }
+
+        function showStageDetail(stageNum) {
+            const modal = document.getElementById('stageModal');
+            const title = document.getElementById('stageModalTitle');
+            const subtitle = document.getElementById('stageModalSubtitle');
+            const body = document.getElementById('stageModalBody');
+
+            const stage = window.GALLERY_STAGES[stageNum];
+            if (stage) {
+                title.innerHTML = stage.title;
+                subtitle.innerHTML = stage.subtitle;
+                body.innerHTML = stage.body;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+    <script src="gallery-stages.js"></script>
+    <script src="gallery-published.js"></script>
+</body>
+</html>

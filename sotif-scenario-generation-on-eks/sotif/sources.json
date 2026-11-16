@@ -1,0 +1,58 @@
+[
+ {
+  "id": "arxiv-2303.04037",
+  "url": "https://arxiv.org/pdf/2303.04037",
+  "license": "CC BY 4.0",
+  "title": "Discovery of Perception Performance Limiting Triggering Conditions in Automated Driving",
+  "authors": "Adee, Gansch, Liggesmeyer, Glaeser, Drews",
+  "year": 2023
+ },
+ {
+  "id": "arxiv-2303.04029",
+  "url": "https://arxiv.org/pdf/2303.04029",
+  "license": "CC BY 4.0",
+  "title": "Systematic Modeling Approach for Environmental Perception Limitations in Automated Driving",
+  "authors": "Adee, Gansch, Liggesmeyer",
+  "year": 2023
+ },
+ {
+  "id": "arxiv-2407.21569",
+  "url": "https://arxiv.org/pdf/2407.21569",
+  "license": "CC BY 4.0",
+  "title": "Analysis of Functional Insufficiencies and Triggering Conditions to Improve the SOTIF of an MPC-based Trajectory Planner",
+  "authors": "Conrad, Schildbach",
+  "year": 2024
+ },
+ {
+  "id": "arxiv-2408.14481",
+  "url": "https://arxiv.org/pdf/2408.14481",
+  "license": "CC BY 4.0",
+  "title": "Formalization of Operational Domain and Operational Design Domain for Automated Vehicles",
+  "authors": "Shakeri",
+  "year": 2024
+ },
+ {
+  "id": "arxiv-2503.00709",
+  "url": "https://arxiv.org/pdf/2503.00709",
+  "license": "CC BY 4.0",
+  "title": "ICanC: Improving Camera-based Object Detection and Energy Consumption in Low-Illumination Environments",
+  "authors": "Ma, Zhong, Shi",
+  "year": 2025
+ },
+ {
+  "id": "arxiv-2509.06333",
+  "url": "https://arxiv.org/pdf/2509.06333",
+  "license": "CC BY 4.0",
+  "title": "Multi-Modal Camera-Based Detection of Vulnerable Road Users",
+  "authors": "Brown, Perez, Shan, Worrall",
+  "year": 2025
+ },
+ {
+  "id": "arxiv-2210.10233",
+  "url": "https://arxiv.org/pdf/2210.10233",
+  "license": "CC BY 4.0",
+  "title": "Vision-Based Robust Lane Detection and Tracking under Different Challenging Environmental Conditions",
+  "authors": "Sultana, Ahmed, Paul, Islam, Ahmad",
+  "year": 2022
+ }
+]

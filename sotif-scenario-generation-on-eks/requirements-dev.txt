@@ -1,0 +1,5 @@
+pytest==9.2.0
+numpy==2.4.4
+boto3==1.44.0
+defusedxml==0.7.1
+urllib3==2.8.0

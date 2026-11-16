@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/awslabs/automated-security-helper/refs/heads/main/automated_security_helper/schemas/AshConfig.json
+# AWS Automated Security Helper settings for scripts/security_scan.sh. Code-level exceptions live next to the code
+# (# nosec / # nosemgrep / # checkov:skip); infrastructure exceptions are in cdk/drive_atlas_infra/checks.py.
+project_name: drive-atlas
+global_settings:
+  severity_threshold: MEDIUM
+  ignore_paths:
+    - path: web/media/**
+      reason: Local-only demo videos, not part of the repository
+  suppressions:
+    - rule_id: SECRET-BASE64-HIGH-ENTROPY-STRING
+      path: "*.template.json"
+      reason: Synthesized CloudFormation templates contain CDK asset hashes and S3 object keys, not secrets
+    - rule_id: SECRET-HEX-HIGH-ENTROPY-STRING
+      path: "*.template.json"
+      reason: Synthesized CloudFormation templates contain CDK asset hashes and S3 object keys, not secrets
+    - rule_id: CKV_SECRET_6
+      path: "*.template.json"
+      reason: Synthesized CloudFormation templates contain CDK asset hashes and S3 object keys, not secrets
+    - rule_id: CKV_AWS_115
+      path: "*Web.template.json"
+      reason: CDK cross-region reference handler (Custom::CrossRegionExportReader/Writer), added during synthesis after aspects run; invoked synchronously by CloudFormation, so DLQ, reserved concurrency and VPC do not apply. These stacks have no other Lambda functions.
+    - rule_id: CKV_AWS_115
+      path: "*EdgeWaf.template.json"
+      reason: CDK cross-region reference handler (Custom::CrossRegionExportReader/Writer), added during synthesis after aspects run; invoked synchronously by CloudFormation, so DLQ, reserved concurrency and VPC do not apply. These stacks have no other Lambda functions.
+    - rule_id: CKV_AWS_116
+      path: "*Web.template.json"
+      reason: CDK cross-region reference handler (Custom::CrossRegionExportReader/Writer), added during synthesis after aspects run; invoked synchronously by CloudFormation, so DLQ, reserved concurrency and VPC do not apply. These stacks have no other Lambda functions.
+    - rule_id: CKV_AWS_116
+      path: "*EdgeWaf.template.json"
+      reason: CDK cross-region reference handler (Custom::CrossRegionExportReader/Writer), added during synthesis after aspects run; invoked synchronously by CloudFormation, so DLQ, reserved concurrency and VPC do not apply. These stacks have no other Lambda functions.
+    - rule_id: CKV_AWS_117
+      path: "*Web.template.json"
+      reason: CDK cross-region reference handler (Custom::CrossRegionExportReader/Writer), added during synthesis after aspects run; invoked synchronously by CloudFormation, so DLQ, reserved concurrency and VPC do not apply. These stacks have no other Lambda functions.
+    - rule_id: CKV_AWS_117
+      path: "*EdgeWaf.template.json"
+      reason: CDK cross-region reference handler (Custom::CrossRegionExportReader/Writer), added during synthesis after aspects run; invoked synchronously by CloudFormation, so DLQ, reserved concurrency and VPC do not apply. These stacks have no other Lambda functions.
+fail_on_findings: true

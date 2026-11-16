@@ -1,0 +1,582 @@
+<http://sotif.ontology/ConstructionZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/ConstructionZone> <http://www.w3.org/2000/01/rdf-schema#label> "ConstructionZone" .
+<http://sotif.ontology/ConstructionZone> <http://sotif.ontology/description> "공사 구간" .
+<http://sotif.ontology/ConstructionZone> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/RoadInfrastructure> .
+<http://sotif.ontology/DrivingBehavior> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/DrivingBehavior> <http://www.w3.org/2000/01/rdf-schema#label> "DrivingBehavior" .
+<http://sotif.ontology/DrivingBehavior> <http://sotif.ontology/description> "타 교통 참여자의 행동 패턴" .
+<http://sotif.ontology/DynamicActor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/DynamicActor> <http://www.w3.org/2000/01/rdf-schema#label> "DynamicActor" .
+<http://sotif.ontology/DynamicActor> <http://sotif.ontology/description> "동적 교통 참여자" .
+<http://sotif.ontology/EgoState> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/EgoState> <http://www.w3.org/2000/01/rdf-schema#label> "EgoState" .
+<http://sotif.ontology/EgoState> <http://sotif.ontology/description> "자차 상태" .
+<http://sotif.ontology/EnvironmentFactor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/EnvironmentFactor> <http://www.w3.org/2000/01/rdf-schema#label> "EnvironmentFactor" .
+<http://sotif.ontology/EnvironmentFactor> <http://sotif.ontology/description> "외부 환경 요인" .
+<http://sotif.ontology/EnvironmentFactor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/TriggeringCondition> .
+<http://sotif.ontology/FunctionalInsufficiency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/FunctionalInsufficiency> <http://www.w3.org/2000/01/rdf-schema#label> "FunctionalInsufficiency" .
+<http://sotif.ontology/FunctionalInsufficiency> <http://sotif.ontology/description> "기능 불충분성 유형" .
+<http://sotif.ontology/HazardousEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/HazardousEvent> <http://www.w3.org/2000/01/rdf-schema#label> "HazardousEvent" .
+<http://sotif.ontology/HazardousEvent> <http://sotif.ontology/description> "위험 이벤트" .
+<http://sotif.ontology/LaneMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/LaneMarking> <http://www.w3.org/2000/01/rdf-schema#label> "LaneMarking" .
+<http://sotif.ontology/LaneMarking> <http://sotif.ontology/description> "차선 표시 상태" .
+<http://sotif.ontology/LaneMarking> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/RoadInfrastructure> .
+<http://sotif.ontology/LightingCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/LightingCondition> <http://www.w3.org/2000/01/rdf-schema#label> "LightingCondition" .
+<http://sotif.ontology/LightingCondition> <http://sotif.ontology/description> "조명/광원 조건" .
+<http://sotif.ontology/LightingCondition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/EnvironmentFactor> .
+<http://sotif.ontology/OcclusionState> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/OcclusionState> <http://www.w3.org/2000/01/rdf-schema#label> "OcclusionState" .
+<http://sotif.ontology/OcclusionState> <http://sotif.ontology/description> "가림 상태" .
+<http://sotif.ontology/PerceptionFunction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/PerceptionFunction> <http://www.w3.org/2000/01/rdf-schema#label> "PerceptionFunction" .
+<http://sotif.ontology/PerceptionFunction> <http://sotif.ontology/description> "인식 기능" .
+<http://sotif.ontology/RoadInfrastructure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/RoadInfrastructure> <http://www.w3.org/2000/01/rdf-schema#label> "RoadInfrastructure" .
+<http://sotif.ontology/RoadInfrastructure> <http://sotif.ontology/description> "도로 인프라 요소" .
+<http://sotif.ontology/RoadInfrastructure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/TriggeringCondition> .
+<http://sotif.ontology/RoadSurfaceCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/RoadSurfaceCondition> <http://www.w3.org/2000/01/rdf-schema#label> "RoadSurfaceCondition" .
+<http://sotif.ontology/RoadSurfaceCondition> <http://sotif.ontology/description> "노면 상태" .
+<http://sotif.ontology/RoadSurfaceCondition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/EnvironmentFactor> .
+<http://sotif.ontology/RoadType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/RoadType> <http://www.w3.org/2000/01/rdf-schema#label> "RoadType" .
+<http://sotif.ontology/RoadType> <http://sotif.ontology/description> "도로 유형" .
+<http://sotif.ontology/RoadType> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/RoadInfrastructure> .
+<http://sotif.ontology/SOTIFArea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/SOTIFArea> <http://www.w3.org/2000/01/rdf-schema#label> "SOTIFArea" .
+<http://sotif.ontology/SOTIFArea> <http://sotif.ontology/description> "SOTIF 시나리오 영역 분류 (Area 1-4)" .
+<http://sotif.ontology/Sensor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/Sensor> <http://www.w3.org/2000/01/rdf-schema#label> "Sensor" .
+<http://sotif.ontology/Sensor> <http://sotif.ontology/description> "자율주행 센서 유형" .
+<http://sotif.ontology/StaticObject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/StaticObject> <http://www.w3.org/2000/01/rdf-schema#label> "StaticObject" .
+<http://sotif.ontology/StaticObject> <http://sotif.ontology/description> "도로 위/변 정적 물체" .
+<http://sotif.ontology/TrafficControl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/TrafficControl> <http://www.w3.org/2000/01/rdf-schema#label> "TrafficControl" .
+<http://sotif.ontology/TrafficControl> <http://sotif.ontology/description> "교통 제어 시설" .
+<http://sotif.ontology/TrafficControl> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/RoadInfrastructure> .
+<http://sotif.ontology/TriggeringCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/TriggeringCondition> <http://www.w3.org/2000/01/rdf-schema#label> "TriggeringCondition" .
+<http://sotif.ontology/TriggeringCondition> <http://sotif.ontology/description> "SOTIF 위험 상황을 유발하는 조건" .
+<http://sotif.ontology/VRU> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/VRU> <http://www.w3.org/2000/01/rdf-schema#label> "VRU" .
+<http://sotif.ontology/VRU> <http://sotif.ontology/description> "취약 도로 사용자 (보행자, 자전거 등)" .
+<http://sotif.ontology/VRU> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/DynamicActor> .
+<http://sotif.ontology/Vehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/Vehicle> <http://www.w3.org/2000/01/rdf-schema#label> "Vehicle" .
+<http://sotif.ontology/Vehicle> <http://sotif.ontology/description> "차량류" .
+<http://sotif.ontology/Vehicle> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/DynamicActor> .
+<http://sotif.ontology/VisibilityCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/VisibilityCondition> <http://www.w3.org/2000/01/rdf-schema#label> "VisibilityCondition" .
+<http://sotif.ontology/VisibilityCondition> <http://sotif.ontology/description> "가시성 조건" .
+<http://sotif.ontology/VisibilityCondition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/EnvironmentFactor> .
+<http://sotif.ontology/WeatherCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Class> .
+<http://sotif.ontology/WeatherCondition> <http://www.w3.org/2000/01/rdf-schema#label> "WeatherCondition" .
+<http://sotif.ontology/WeatherCondition> <http://sotif.ontology/description> "기상 조건" .
+<http://sotif.ontology/WeatherCondition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://sotif.ontology/EnvironmentFactor> .
+<http://sotif.ontology/AbsentMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/AbsentMarking> <http://www.w3.org/2000/01/rdf-schema#label> "AbsentMarking" .
+<http://sotif.ontology/AbsentMarking> <http://sotif.ontology/description> "차선 표시가 없거나 갑자기 사라진 상태로, 차선 인식이 불가능해 차선 유지 기능에 불확실성을 준다." .
+<http://sotif.ontology/ActiveConstruction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/ConstructionZone> .
+<http://sotif.ontology/ActiveConstruction> <http://www.w3.org/2000/01/rdf-schema#label> "ActiveConstruction" .
+<http://sotif.ontology/ActiveConstruction> <http://sotif.ontology/description> "작업자·장비가 현재 작업 중인 공사 구간으로, 동적 변화와 임시 차로 변경이 잦아 인식·계획에 불확실성이 크다." .
+<http://sotif.ontology/AdultPedestrian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VRU> .
+<http://sotif.ontology/AdultPedestrian> <http://www.w3.org/2000/01/rdf-schema#label> "AdultPedestrian" .
+<http://sotif.ontology/AdultPedestrian> <http://sotif.ontology/description> "일반적인 성인 보행자로, 횡단 시 충돌 위험이 있어 기본 VRU 검출·예측 시험 대상이 된다." .
+<http://sotif.ontology/AnimalCarcass> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/AnimalCarcass> <http://www.w3.org/2000/01/rdf-schema#label> "AnimalCarcass" .
+<http://sotif.ontology/AnimalCarcass> <http://sotif.ontology/description> "도로 위에 놓인 동물 사체로, 형태가 불규칙하고 낮아 분류 오류나 늦은 감지를 유발할 수 있다." .
+<http://sotif.ontology/Area1_KnownSafe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/SOTIFArea> .
+<http://sotif.ontology/Area1_KnownSafe> <http://www.w3.org/2000/01/rdf-schema#label> "Area1_KnownSafe" .
+<http://sotif.ontology/Area1_KnownSafe> <http://sotif.ontology/description> "기능 불충분이 있어도 위험을 일으키지 않는 것으로 알려진 안전한 시나리오 영역(Area 1)이다." .
+<http://sotif.ontology/Area2_KnownUnsafe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/SOTIFArea> .
+<http://sotif.ontology/Area2_KnownUnsafe> <http://www.w3.org/2000/01/rdf-schema#label> "Area2_KnownUnsafe" .
+<http://sotif.ontology/Area2_KnownUnsafe> <http://sotif.ontology/description> "기능 불충분이 트리거링 조건과 만나 위험 행동으로 이어지는 것으로 이미 알려진 위험 시나리오 영역(Area 2)으로, SOTIF 대책의 주 대상이다." .
+<http://sotif.ontology/Area2_MitigatedResidualRisk> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/SOTIFArea> .
+<http://sotif.ontology/Area2_MitigatedResidualRisk> <http://www.w3.org/2000/01/rdf-schema#label> "Area2_MitigatedResidualRisk" .
+<http://sotif.ontology/Area2_MitigatedResidualRisk> <http://sotif.ontology/description> "알려진 위험 시나리오(Area 2)에 사양·설계 개선 등 SOTIF 대책을 적용해 위험 시나리오 수를 줄인 뒤 남는 잔여 위험 영역(arXiv 2407.21569 §4)." .
+<http://sotif.ontology/Area3_NovelTriggeringConditionCandidate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/SOTIFArea> .
+<http://sotif.ontology/Area3_NovelTriggeringConditionCandidate> <http://www.w3.org/2000/01/rdf-schema#label> "Area3_NovelTriggeringConditionCandidate" .
+<http://sotif.ontology/Area3_NovelTriggeringConditionCandidate> <http://sotif.ontology/description> "베이지안 네트워크 학습과 p-value 검정으로 찾은 신규 트리거링 조건 후보. 후보는 BN에 모델링한 뒤 다시 검정한다(arXiv 2303.04037)." .
+<http://sotif.ontology/Area3_UnknownUnsafe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/SOTIFArea> .
+<http://sotif.ontology/Area3_UnknownUnsafe> <http://www.w3.org/2000/01/rdf-schema#label> "Area3_UnknownUnsafe" .
+<http://sotif.ontology/Area3_UnknownUnsafe> <http://sotif.ontology/description> "아직 식별되지 않았으나 위험을 유발할 수 있는 시나리오 영역(Area 3)으로, SOTIF 분석이 최소화해야 하는 핵심 영역이다." .
+<http://sotif.ontology/Area4_UnknownSafe> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/SOTIFArea> .
+<http://sotif.ontology/Area4_UnknownSafe> <http://www.w3.org/2000/01/rdf-schema#label> "Area4_UnknownSafe" .
+<http://sotif.ontology/Area4_UnknownSafe> <http://sotif.ontology/description> "식별되지 않았지만 위험하지 않은 시나리오 영역(Area 4)으로, 검증 노력이 필요 없는 잔여 영역이다." .
+<http://sotif.ontology/BuildingOccludedView> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VisibilityCondition> .
+<http://sotif.ontology/BuildingOccludedView> <http://www.w3.org/2000/01/rdf-schema#label> "BuildingOccludedView" .
+<http://sotif.ontology/BuildingOccludedView> <http://sotif.ontology/description> "도심에서 주차 차량·나무 등으로 시야가 가려진 상태. 가림이 많을수록 FN이 늘 수 있다(arXiv 2303.04029 §II-A, 명제 p1)." .
+<http://sotif.ontology/Bus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/Bus> <http://www.w3.org/2000/01/rdf-schema#label> "Bus" .
+<http://sotif.ontology/Bus> <http://sotif.ontology/description> "대형 차체를 가진 대중교통 차량으로, 시야를 가리고 정류장 주변 보행자 상호작용을 유발하는 도시 주행 테스트 대상이다." .
+<http://sotif.ontology/Camera> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Sensor> .
+<http://sotif.ontology/Camera> <http://www.w3.org/2000/01/rdf-schema#label> "Camera" .
+<http://sotif.ontology/Camera> <http://sotif.ontology/description> "차량 주변을 영상으로 인식하는 광학 센서로, 차선·신호등·표지판·객체 분류에 쓰이지만 조명·날씨 변화에 민감하다." .
+<http://sotif.ontology/CarTransporterTrailer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/CarTransporterTrailer> <http://www.w3.org/2000/01/rdf-schema#label> "CarTransporterTrailer" .
+<http://sotif.ontology/CarTransporterTrailer> <http://sotif.ontology/description> "차량을 적재한 트레일러. FN에 대한 신규 트리거링 조건으로 식별됐다(arXiv 2303.04037 표 II)." .
+<http://sotif.ontology/ChildPedestrian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VRU> .
+<http://sotif.ontology/ChildPedestrian> <http://www.w3.org/2000/01/rdf-schema#label> "ChildPedestrian" .
+<http://sotif.ontology/ChildPedestrian> <http://sotif.ontology/description> "키가 작고 갑작스럽게 움직이는 어린이 보행자로, 가림에 취약하고 늦은 검출 및 예측 실패 위험이 크다." .
+<http://sotif.ontology/ClearMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/ClearMarking> <http://www.w3.org/2000/01/rdf-schema#label> "ClearMarking" .
+<http://sotif.ontology/ClearMarking> <http://sotif.ontology/description> "선명하고 대비가 높아 인식이 용이한 정상 차선 표시 상태로, 기준(안전) 조건이다." .
+<http://sotif.ontology/ClearWeather> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/ClearWeather> <http://www.w3.org/2000/01/rdf-schema#label> "ClearWeather" .
+<http://sotif.ontology/ClearWeather> <http://sotif.ontology/description> "강수나 안개 등이 없는 맑은 날씨로, 센서 성능 저하가 최소인 기준 조건이다." .
+<http://sotif.ontology/CloudyWeather> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/CloudyWeather> <http://www.w3.org/2000/01/rdf-schema#label> "CloudyWeather" .
+<http://sotif.ontology/CloudyWeather> <http://sotif.ontology/description> "흐린 날씨. BN의 날씨 요인 값 중 하나이며, 날씨는 노면 상태와 장면 조도에 영향을 준다(arXiv 2303.04029 명제 2)." .
+<http://sotif.ontology/CollisionWithVRU> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/CollisionWithVRU> <http://www.w3.org/2000/01/rdf-schema#label> "CollisionWithVRU" .
+<http://sotif.ontology/CollisionWithVRU> <http://sotif.ontology/description> "보행자, 자전거 운전자 등 취약 도로 사용자와 충돌하는 위험 이벤트로 인명 피해 가능성이 커 SOTIF상 가장 중요하다." .
+<http://sotif.ontology/ConstructionBarrier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/ConstructionBarrier> <http://www.w3.org/2000/01/rdf-schema#label> "ConstructionBarrier" .
+<http://sotif.ontology/ConstructionBarrier> <http://sotif.ontology/description> "공사 구간을 구획하는 배리어. 지도 layer 2에 포함된다(arXiv 2407.21569 S02b)." .
+<http://sotif.ontology/ContourMatchingError> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/ContourMatchingError> <http://www.w3.org/2000/01/rdf-schema#label> "ContourMatchingError" .
+<http://sotif.ontology/ContourMatchingError> <http://sotif.ontology/description> "감지된 객체의 윤곽이 실제 객체와 맞지 않는 인식 결과. SOTIF 관련 원치 않는 거동으로 모델링할 수 있는 항목 중 하나다(arXiv 2303.04029 §II-A)." .
+<http://sotif.ontology/CutIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/CutIn> <http://www.w3.org/2000/01/rdf-schema#label> "CutIn" .
+<http://sotif.ontology/CutIn> <http://sotif.ontology/description> "타 차량이 자차 앞으로 갑자기 끼어드는 행동으로, 짧은 안전거리와 급제동 필요성을 유발한다." .
+<http://sotif.ontology/Cyclist> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VRU> .
+<http://sotif.ontology/Cyclist> <http://www.w3.org/2000/01/rdf-schema#label> "Cyclist" .
+<http://sotif.ontology/Cyclist> <http://sotif.ontology/description> "자전거 탑승자로, 보행자보다 빠르고 좁은 단면 때문에 검출과 경로 예측이 어려운 VRU이다." .
+<http://sotif.ontology/DamagedVehicleOnShoulder> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/DamagedVehicleOnShoulder> <http://www.w3.org/2000/01/rdf-schema#label> "DamagedVehicleOnShoulder" .
+<http://sotif.ontology/DamagedVehicleOnShoulder> <http://sotif.ontology/description> "고속도로 갓길에 정차한 차량(arXiv 2407.21569 TC032). 계획기가 제시간에 궤적을 계산하지 못하거나 실행 가능한 궤적을 찾지 못할 수 있다(FI010, FI006)." .
+<http://sotif.ontology/DirectSunGlare> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/DirectSunGlare> <http://www.w3.org/2000/01/rdf-schema#label> "DirectSunGlare" .
+<http://sotif.ontology/DirectSunGlare> <http://sotif.ontology/description> "태양광이 카메라에 직접 입사해 눈부심과 과노출을 일으켜 차선 및 객체 인식을 저해하는 조건이다." .
+<http://sotif.ontology/DirtyMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/DirtyMarking> <http://www.w3.org/2000/01/rdf-schema#label> "DirtyMarking" .
+<http://sotif.ontology/DirtyMarking> <http://sotif.ontology/description> "먼지·오염으로 더러워진 차선 표시. 차선 유지·변경 중 진동이나 불안정한 거동을 일으킬 수 있다(arXiv 2407.21569 TC010b, FI008)." .
+<http://sotif.ontology/DoorOpening> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/DoorOpening> <http://www.w3.org/2000/01/rdf-schema#label> "DoorOpening" .
+<http://sotif.ontology/DoorOpening> <http://sotif.ontology/description> "주차 또는 정차 차량의 문이 갑자기 열려 탑승자나 문이 주행 경로로 돌출되는 행동이다." .
+<http://sotif.ontology/DroppedCargo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/DroppedCargo> <http://www.w3.org/2000/01/rdf-schema#label> "DroppedCargo" .
+<http://sotif.ontology/DroppedCargo> <http://sotif.ontology/description> "차량에서 떨어진 화물(상자, 암석 등)로 도로 위에 놓인 임시 장애물." .
+<http://sotif.ontology/DryRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/DryRoad> <http://www.w3.org/2000/01/rdf-schema#label> "DryRoad" .
+<http://sotif.ontology/DryRoad> <http://sotif.ontology/description> "마른 노면으로 마찰계수가 높고 반사가 적어 기준(정상) 조건이 되는 노면 상태이다." .
+<http://sotif.ontology/EScooterRider> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VRU> .
+<http://sotif.ontology/EScooterRider> <http://www.w3.org/2000/01/rdf-schema#label> "EScooterRider" .
+<http://sotif.ontology/EScooterRider> <http://sotif.ontology/description> "전동 킥보드 탑승자로, 빠른 속도와 불규칙한 궤적 때문에 보행자로 오분류되거나 예측이 어려운 VRU이다." .
+<http://sotif.ontology/EmergencyManeuver> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/EmergencyManeuver> <http://www.w3.org/2000/01/rdf-schema#label> "EmergencyManeuver" .
+<http://sotif.ontology/EmergencyManeuver> <http://sotif.ontology/description> "타 차량이 충돌 회피 등을 위해 급조향·급제동 같은 비정상적 긴급 기동을 하는 행동이다." .
+<http://sotif.ontology/EmergencyVehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/EmergencyVehicle> <http://www.w3.org/2000/01/rdf-schema#label> "EmergencyVehicle" .
+<http://sotif.ontology/EmergencyVehicle> <http://sotif.ontology/description> "경광등·사이렌을 사용하는 긴급 출동 차량으로, 규칙 예외 주행과 길 터주기 요구를 유발해 계획·예측에 어려움을 준다." .
+<http://sotif.ontology/FallenTree> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/FallenTree> <http://www.w3.org/2000/01/rdf-schema#label> "FallenTree" .
+<http://sotif.ontology/FallenTree> <http://sotif.ontology/description> "도로를 가로막는 쓰러진 나무로, 큰 장애물이지만 비정형 형상 때문에 인식 및 회피 경로 생성이 어렵다." .
+<http://sotif.ontology/FalseNegative> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/FalseNegative> <http://www.w3.org/2000/01/rdf-schema#label> "FalseNegative" .
+<http://sotif.ontology/FalseNegative> <http://sotif.ontology/description> "실제로 존재하는 객체를 감지하지 못하는 기능 불충분성으로, 필요한 제동·회피가 이루어지지 않아 충돌 위험이 크다." .
+<http://sotif.ontology/FalsePositive> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/FalsePositive> <http://www.w3.org/2000/01/rdf-schema#label> "FalsePositive" .
+<http://sotif.ontology/FalsePositive> <http://sotif.ontology/description> "존재하지 않는 객체를 있는 것으로 잘못 감지하는 기능 불충분성으로, 불필요한 제동 같은 SOTIF 관련 의도치 않은 거동을 유발한다." .
+<http://sotif.ontology/Fog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/Fog> <http://www.w3.org/2000/01/rdf-schema#label> "Fog" .
+<http://sotif.ontology/Fog> <http://sotif.ontology/description> "대기 중 수분으로 가시거리가 줄어드는 안개 조건으로, 카메라와 라이다의 탐지 성능을 저하시킨다." .
+<http://sotif.ontology/FreespaceDetection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/PerceptionFunction> .
+<http://sotif.ontology/FreespaceDetection> <http://www.w3.org/2000/01/rdf-schema#label> "FreespaceDetection" .
+<http://sotif.ontology/FreespaceDetection> <http://sotif.ontology/description> "차량이 안전하게 주행할 수 있는 장애물 없는 공간을 판별하는 인식 기능이다." .
+<http://sotif.ontology/FullOcclusion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/OcclusionState> .
+<http://sotif.ontology/FullOcclusion> <http://www.w3.org/2000/01/rdf-schema#label> "FullOcclusion" .
+<http://sotif.ontology/FullOcclusion> <http://sotif.ontology/description> "대상 객체가 센서 시야에서 거의 완전히 가려져 검출이 불가능한 상태로, 미검출(FN)과 늦은 검출 위험이 가장 크다." .
+<http://sotif.ontology/Gravel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/Gravel> <http://www.w3.org/2000/01/rdf-schema#label> "Gravel" .
+<http://sotif.ontology/Gravel> <http://sotif.ontology/description> "자갈이나 돌이 깔린 불규칙한 노면으로, 마찰과 주행 가능성을 저하시켜 궤적 생성에 영향을 주는 트리거링 조건이다." .
+<http://sotif.ontology/Hail> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/Hail> <http://www.w3.org/2000/01/rdf-schema#label> "Hail" .
+<http://sotif.ontology/Hail> <http://sotif.ontology/description> "우박이 떨어지는 기상 조건으로, 센서 노이즈와 노면 상태 변화를 일으키고 인지 성능에 영향을 줄 수 있다." .
+<http://sotif.ontology/HeadOnCollision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/HeadOnCollision> <http://www.w3.org/2000/01/rdf-schema#label> "HeadOnCollision" .
+<http://sotif.ontology/HeadOnCollision> <http://sotif.ontology/description> "반대 방향 또는 역주행 차량과 정면으로 충돌하는 위험 이벤트로 심각도가 매우 높다." .
+<http://sotif.ontology/HeavyFogVisibility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VisibilityCondition> .
+<http://sotif.ontology/HeavyFogVisibility> <http://www.w3.org/2000/01/rdf-schema#label> "HeavyFogVisibility" .
+<http://sotif.ontology/HeavyFogVisibility> <http://sotif.ontology/description> "짙은 안개로 시정이 낮은 상태. 격자 셀별 FN 비율이 달라지고(arXiv 2303.04029), 차선 표시가 잘 보이지 않는다(arXiv 2407.21569 TC024b)." .
+<http://sotif.ontology/HeavyRain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/HeavyRain> <http://www.w3.org/2000/01/rdf-schema#label> "HeavyRain" .
+<http://sotif.ontology/HeavyRain> <http://sotif.ontology/description> "강한 비로 노면 침수와 반사를 일으켜 라이다 등의 참양성(TP) 탐지율을 낮출 수 있는 조건이다." .
+<http://sotif.ontology/HighSpeed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/EgoState> .
+<http://sotif.ontology/HighSpeed> <http://www.w3.org/2000/01/rdf-schema#label> "HighSpeed" .
+<http://sotif.ontology/HighSpeed> <http://sotif.ontology/description> "자차가 고속(예: 50 km/h 초과 ~ 130 km/h)으로 주행하는 상태로, 제동거리가 길어 탐지 지연이 치명적인 위험으로 이어질 수 있다." .
+<http://sotif.ontology/Highway> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/Highway> <http://www.w3.org/2000/01/rdf-schema#label> "Highway" .
+<http://sotif.ontology/Highway> <http://sotif.ontology/description> "차량 전용 고속 주행 도로로, 높은 주행 속도 때문에 원거리 검출과 긴 제동 거리가 요구되는 도로 유형이다." .
+<http://sotif.ontology/IcyRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/IcyRoad> <http://www.w3.org/2000/01/rdf-schema#label> "IcyRoad" .
+<http://sotif.ontology/IcyRoad> <http://sotif.ontology/description> "노면이 얼어 마찰계수가 급격히 떨어지는 상태로, 제동·조향 한계를 낮춰 계획된 궤적이 주행 불가능해질 수 있다." .
+<http://sotif.ontology/InactiveConstruction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/ConstructionZone> .
+<http://sotif.ontology/InactiveConstruction> <http://www.w3.org/2000/01/rdf-schema#label> "InactiveConstruction" .
+<http://sotif.ontology/InactiveConstruction> <http://sotif.ontology/description> "작업이 중단되었으나 콘, 바리케이드 등 구조물이 남아 있는 공사 구간으로, 정적 장애물과 변경된 차로 배치가 오인식을 유발할 수 있다." .
+<http://sotif.ontology/IntentPredictionError> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/IntentPredictionError> <http://www.w3.org/2000/01/rdf-schema#label> "IntentPredictionError" .
+<http://sotif.ontology/IntentPredictionError> <http://sotif.ontology/description> "주변 차량의 의도(차로 유지·변경 등)를 잘못 예측하는 기능 불충분성. 상호작용을 고려하지 않으면 과도한 보수적 주행으로 이어질 수 있다(arXiv 2407.21569 §5.3, FI005)." .
+<http://sotif.ontology/Intersection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/Intersection> <http://www.w3.org/2000/01/rdf-schema#label> "Intersection" .
+<http://sotif.ontology/Intersection> <http://sotif.ontology/description> "여러 도로가 만나는 교차로로, 통행권 판단과 가림, 다방향 교통 때문에 인지·계획 한계가 드러나기 쉬운 도로 유형이다." .
+<http://sotif.ontology/Jaywalking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/Jaywalking> <http://www.w3.org/2000/01/rdf-schema#label> "Jaywalking" .
+<http://sotif.ontology/Jaywalking> <http://sotif.ontology/description> "보행자가 횡단보도나 신호 없이 차도를 무단 횡단하는 행동으로 VRU 충돌 위험이 크다." .
+<http://sotif.ontology/LaneClosureZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/ConstructionZone> .
+<http://sotif.ontology/LaneClosureZone> <http://www.w3.org/2000/01/rdf-schema#label> "LaneClosureZone" .
+<http://sotif.ontology/LaneClosureZone> <http://sotif.ontology/description> "공사 등으로 하나 이상의 차로가 폐쇄되어 차로 병합이 필요한 구간. 병합 지점에서 통행권이 불명확하면 과도한 보수적 주행이나 교착이 생길 수 있다(arXiv 2407.21569 TC004a, FI005)." .
+<http://sotif.ontology/LaneDeparture> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/LaneDeparture> <http://www.w3.org/2000/01/rdf-schema#label> "LaneDeparture" .
+<http://sotif.ontology/LaneDeparture> <http://sotif.ontology/description> "자차가 의도치 않게 주행 차선을 이탈하는 위험 이벤트로, 차선 인식 오류나 계획 불안정에서 비롯된다." .
+<http://sotif.ontology/LaneDetection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/PerceptionFunction> .
+<http://sotif.ontology/LaneDetection> <http://www.w3.org/2000/01/rdf-schema#label> "LaneDetection" .
+<http://sotif.ontology/LaneDetection> <http://sotif.ontology/description> "차선 표시와 도로 경계를 인식하여 차선 유지와 차선 변경을 지원하는 인식 기능이며, 표시 훼손이나 조명 변화에 취약하다." .
+<http://sotif.ontology/LargeTruck> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/LargeTruck> <http://www.w3.org/2000/01/rdf-schema#label> "LargeTruck" .
+<http://sotif.ontology/LargeTruck> <http://sotif.ontology/description> "대형 화물 트럭으로, 큰 크기로 인해 후방·측방 시야를 차단하고 차량 치수 변동이 검출 성능에 영향을 줄 수 있다." .
+<http://sotif.ontology/LateDetection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/LateDetection> <http://www.w3.org/2000/01/rdf-schema#label> "LateDetection" .
+<http://sotif.ontology/LateDetection> <http://sotif.ontology/description> "객체를 감지하긴 하나 필요한 시점보다 늦게 감지하는 기능 불충분성으로, 반응 시간이 부족해 충돌 위험이 커진다." .
+<http://sotif.ontology/Lidar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Sensor> .
+<http://sotif.ontology/Lidar> <http://www.w3.org/2000/01/rdf-schema#label> "Lidar" .
+<http://sotif.ontology/Lidar> <http://sotif.ontology/description> "레이저 펄스로 3D 점군을 생성하는 센서로, 정밀한 거리·형상 정보를 제공하지만 비·안개·가림에 따라 성능이 달라진다." .
+<http://sotif.ontology/LightRain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/LightRain> <http://www.w3.org/2000/01/rdf-schema#label> "LightRain" .
+<http://sotif.ontology/LightRain> <http://sotif.ontology/description> "약한 비로 노면을 젖게 하고 장면 조도와 반사에 약한 영향을 주는 조건이다." .
+<http://sotif.ontology/LowLightDusk> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/LowLightDusk> <http://www.w3.org/2000/01/rdf-schema#label> "LowLightDusk" .
+<http://sotif.ontology/LowLightDusk> <http://sotif.ontology/description> "저조도 조명 상태. 장면 조도 요인의 한 값으로 LIDAR 인식의 TP/FN 비율에 영향을 준다(arXiv 2303.04029 명제 2·3)." .
+<http://sotif.ontology/LowSpeed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/EgoState> .
+<http://sotif.ontology/LowSpeed> <http://www.w3.org/2000/01/rdf-schema#label> "LowSpeed" .
+<http://sotif.ontology/LowSpeed> <http://sotif.ontology/description> "자차가 저속(예: 5 km/h 이하)으로 주행하는 상태로, 주차장·혼잡 도심에서 VRU와의 근접 상호작용 시험에 해당한다." .
+<http://sotif.ontology/LowSunAngle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/LowSunAngle> <http://www.w3.org/2000/01/rdf-schema#label> "LowSunAngle" .
+<http://sotif.ontology/LowSunAngle> <http://sotif.ontology/description> "태양 고도가 낮아 일출·일몰 시 역광과 긴 그림자를 만들어 카메라 인식 성능을 떨어뜨릴 수 있는 조건이다." .
+<http://sotif.ontology/Manhole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/Manhole> <http://www.w3.org/2000/01/rdf-schema#label> "Manhole" .
+<http://sotif.ontology/Manhole> <http://sotif.ontology/description> "노면에 있는 맨홀 뚜껑으로, 노면과 구분이 어려워 거짓 양성이나 승차감 저하 및 오인식을 유발할 수 있다." .
+<http://sotif.ontology/MediumSpeed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/EgoState> .
+<http://sotif.ontology/MediumSpeed> <http://www.w3.org/2000/01/rdf-schema#label> "MediumSpeed" .
+<http://sotif.ontology/MediumSpeed> <http://sotif.ontology/description> "자차가 중속(예: 5~50 km/h)으로 주행하는 상태로, 도심 도로의 일반적인 주행 조건을 대표한다." .
+<http://sotif.ontology/MisclassificationError> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/MisclassificationError> <http://www.w3.org/2000/01/rdf-schema#label> "MisclassificationError" .
+<http://sotif.ontology/MisclassificationError> <http://sotif.ontology/description> "객체의 종류(보행자, 차량 등)를 잘못 분류하는 기능 불충분성으로, 부적절한 예측과 대응 전략을 선택하게 만든다." .
+<http://sotif.ontology/MisleadingMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/MisleadingMarking> <http://www.w3.org/2000/01/rdf-schema#label> "MisleadingMarking" .
+<http://sotif.ontology/MisleadingMarking> <http://sotif.ontology/description> "연석·분리대 등 인프라 구조물이 차선 표시로 오인될 수 있는 상태(arXiv 2407.21569 TC025a,b)." .
+<http://sotif.ontology/MotionPrediction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/PerceptionFunction> .
+<http://sotif.ontology/MotionPrediction> <http://www.w3.org/2000/01/rdf-schema#label> "MotionPrediction" .
+<http://sotif.ontology/MotionPrediction> <http://sotif.ontology/description> "주변 교통 참여자의 미래 거동을 예측하는 기능으로, 예측 오류 시 계획이 위험해질 수 있다." .
+<http://sotif.ontology/Motorcycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/Motorcycle> <http://www.w3.org/2000/01/rdf-schema#label> "Motorcycle" .
+<http://sotif.ontology/Motorcycle> <http://sotif.ontology/description> "소형 이륜 차량으로, 작은 단면적과 민첩한 움직임 때문에 검출 누락과 늦은 검출 위험이 높다." .
+<http://sotif.ontology/NighttimeDark> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/NighttimeDark> <http://www.w3.org/2000/01/rdf-schema#label> "NighttimeDark" .
+<http://sotif.ontology/NighttimeDark> <http://sotif.ontology/description> "주변 조명이 거의 없는 야간 환경으로, 카메라 신호 대 잡음비가 낮아 VRU 등 객체의 검출이 늦어질 수 있는 조건이다." .
+<http://sotif.ontology/NoOcclusion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/OcclusionState> .
+<http://sotif.ontology/NoOcclusion> <http://www.w3.org/2000/01/rdf-schema#label> "NoOcclusion" .
+<http://sotif.ontology/NoOcclusion> <http://sotif.ontology/description> "대상 객체가 완전히 보이는 상태로 가림에 의한 성능 저하가 없는 기준 조건이다." .
+<http://sotif.ontology/NormalDriving> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/NormalDriving> <http://www.w3.org/2000/01/rdf-schema#label> "NormalDriving" .
+<http://sotif.ontology/NormalDriving> <http://sotif.ontology/description> "교통 규칙을 준수하며 예측 가능하게 주행하는 기준 행동이다." .
+<http://sotif.ontology/NormalVisibility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VisibilityCondition> .
+<http://sotif.ontology/NormalVisibility> <http://www.w3.org/2000/01/rdf-schema#label> "NormalVisibility" .
+<http://sotif.ontology/NormalVisibility> <http://sotif.ontology/description> "센서와 운전자가 충분한 거리까지 장애 없이 볼 수 있는 기준 시정 상태로, 인지 성능 저하 요인이 없는 조건이다." .
+<http://sotif.ontology/ObjectDetection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/PerceptionFunction> .
+<http://sotif.ontology/ObjectDetection> <http://www.w3.org/2000/01/rdf-schema#label> "ObjectDetection" .
+<http://sotif.ontology/ObjectDetection> <http://sotif.ontology/description> "차량, 보행자 등 주변 객체를 검출하고 분류·위치를 추정하는 핵심 인식 기능이다." .
+<http://sotif.ontology/ObstacleEvasiveManeuver> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/ObstacleEvasiveManeuver> <http://www.w3.org/2000/01/rdf-schema#label> "ObstacleEvasiveManeuver" .
+<http://sotif.ontology/ObstacleEvasiveManeuver> <http://sotif.ontology/description> "타 차량이 장애물을 피하기 위해 차선 사이 주행이나 갓길 이용 등 비정형 회피를 하는 행동으로, 자차 계획기가 반직관적 궤적을 생성할 위험이 있다. (arXiv 2407.21569 TC002, FI002)" .
+<http://sotif.ontology/OffRamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/OffRamp> <http://www.w3.org/2000/01/rdf-schema#label> "OffRamp" .
+<http://sotif.ontology/OffRamp> <http://sotif.ontology/description> "고속도로에서 빠져나가는 진출 램프로, 차선 감소와 감속 상황에서 계획 모듈에 어려움을 주는 도로 유형이다." .
+<http://sotif.ontology/OilSpillage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/OilSpillage> <http://www.w3.org/2000/01/rdf-schema#label> "OilSpillage" .
+<http://sotif.ontology/OilSpillage> <http://sotif.ontology/description> "오일 유출로 인해 육안·센서로 식별하기 어려운 상태에서 마찰계수가 급격히 떨어지는 노면으로, 차량 제어·궤적 계획의 주행 가능성을 위협하는 SOTIF 트리거링 조건이다. (arXiv 2407.21569 TC007c, FI007)" .
+<http://sotif.ontology/OnRamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/OnRamp> <http://www.w3.org/2000/01/rdf-schema#label> "OnRamp" .
+<http://sotif.ontology/OnRamp> <http://sotif.ontology/description> "고속도로로 진입하는 진입 램프로, 합류 시 통행권이 불명확하고 상대 차량 속도 차이로 계획이 어려운 도로 유형이다." .
+<http://sotif.ontology/OncomingHeadlight> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/OncomingHeadlight> <http://www.w3.org/2000/01/rdf-schema#label> "OncomingHeadlight" .
+<http://sotif.ontology/OncomingHeadlight> <http://sotif.ontology/description> "대향 차량의 전조등이 카메라에 눈부심을 일으켜 일시적 포화와 검출 저하를 유발할 수 있는 조건이다." .
+<http://sotif.ontology/OverlappingMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/OverlappingMarking> <http://www.w3.org/2000/01/rdf-schema#label> "OverlappingMarking" .
+<http://sotif.ontology/OverlappingMarking> <http://sotif.ontology/description> "기존 표시와 신규 표시가 중첩되어 어느 것이 유효한지 모호한 차선 표시 상태이다." .
+<http://sotif.ontology/ParkedVehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/ParkedVehicle> <http://www.w3.org/2000/01/rdf-schema#label> "ParkedVehicle" .
+<http://sotif.ontology/ParkedVehicle> <http://sotif.ontology/description> "도로변에 주차된 차량으로, 시야를 가려 보행자 등 VRU를 부분적으로 가리고 문 열림 등 위험 상황의 원인이 된다." .
+<http://sotif.ontology/ParkingLot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/ParkingLot> <http://www.w3.org/2000/01/rdf-schema#label> "ParkingLot" .
+<http://sotif.ontology/ParkingLot> <http://sotif.ontology/description> "주차장 구역으로, 저속이지만 차선 표시가 불명확하고 주차 차량·보행자에 의한 가림이 많은 도로 유형이다." .
+<http://sotif.ontology/PartialOcclusion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/OcclusionState> .
+<http://sotif.ontology/PartialOcclusion> <http://www.w3.org/2000/01/rdf-schema#label> "PartialOcclusion" .
+<http://sotif.ontology/PartialOcclusion> <http://sotif.ontology/description> "대상 객체의 일부만 다른 물체에 가려진 상태로, 검출 신뢰도 저하와 오분류·위치 오차를 일으킬 수 있다." .
+<http://sotif.ontology/PassengerCar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/PassengerCar> <http://www.w3.org/2000/01/rdf-schema#label> "PassengerCar" .
+<http://sotif.ontology/PassengerCar> <http://sotif.ontology/description> "가장 일반적인 승용차로, 기준 교통 참여자이자 추종·끼어들기 시나리오의 기본 대상이다." .
+<http://sotif.ontology/PedestrianWithStroller> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VRU> .
+<http://sotif.ontology/PedestrianWithStroller> <http://www.w3.org/2000/01/rdf-schema#label> "PedestrianWithStroller" .
+<http://sotif.ontology/PedestrianWithStroller> <http://sotif.ontology/description> "유모차를 미는 보행자로, 형상이 일반 보행자와 달라 오분류될 수 있고 충돌 시 피해가 심각한 VRU이다." .
+<http://sotif.ontology/PositionError> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/PositionError> <http://www.w3.org/2000/01/rdf-schema#label> "PositionError" .
+<http://sotif.ontology/PositionError> <http://sotif.ontology/description> "감지된 객체의 위치 추정에 오차가 있는 기능 불충분성으로, 거리·차선 판단을 잘못하게 해 충돌이나 차선 이탈로 이어질 수 있다." .
+<http://sotif.ontology/Pothole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/Pothole> <http://www.w3.org/2000/01/rdf-schema#label> "Pothole" .
+<http://sotif.ontology/Pothole> <http://sotif.ontology/description> "노면에 움푹 패인 구멍. 생성 궤적이 주행 불가능해질 수 있다(TC008b, FI007)." .
+<http://sotif.ontology/Radar> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Sensor> .
+<http://sotif.ontology/Radar> <http://www.w3.org/2000/01/rdf-schema#label> "Radar" .
+<http://sotif.ontology/Radar> <http://sotif.ontology/description> "전파로 객체의 거리와 상대속도를 측정하는 센서로, 악천후에 강하지만 각도 분해능과 시야각(FoV)이 제한적이다." .
+<http://sotif.ontology/RapidIlluminationChange> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/RapidIlluminationChange> <http://www.w3.org/2000/01/rdf-schema#label> "RapidIlluminationChange" .
+<http://sotif.ontology/RapidIlluminationChange> <http://sotif.ontology/description> "터널 진입 등으로 조명이 급변해 차선 표시를 인식할 수 없게 되는 조건(arXiv 2407.21569 TC023b)." .
+<http://sotif.ontology/RearEndCollision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/RearEndCollision> <http://www.w3.org/2000/01/rdf-schema#label> "RearEndCollision" .
+<http://sotif.ontology/RearEndCollision> <http://sotif.ontology/description> "자차가 선행 차량을 추돌하는 위험 이벤트로, 선행 차량의 늦은 검출로 인해 제동이 늦어질 때 발생한다." .
+<http://sotif.ontology/RearEndedByTrailingVehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/RearEndedByTrailingVehicle> <http://www.w3.org/2000/01/rdf-schema#label> "RearEndedByTrailingVehicle" .
+<http://sotif.ontology/RearEndedByTrailingVehicle> <http://sotif.ontology/description> "자차의 급제동으로 바짝 뒤따르던 후방 차량과 충돌하는 위험 이벤트(arXiv 2407.21569 TC013, FI009)." .
+<http://sotif.ontology/ReducedVisibility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VisibilityCondition> .
+<http://sotif.ontology/ReducedVisibility> <http://www.w3.org/2000/01/rdf-schema#label> "ReducedVisibility" .
+<http://sotif.ontology/ReducedVisibility> <http://sotif.ontology/description> "안개·비·눈·역광 등으로 가시거리가 일부 줄어 인지 성능이 저하되기 시작하는 시정 상태이다." .
+<http://sotif.ontology/RescueAlleyFormation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/RescueAlleyFormation> <http://www.w3.org/2000/01/rdf-schema#label> "RescueAlleyFormation" .
+<http://sotif.ontology/RescueAlleyFormation> <http://sotif.ontology/description> "정체 또는 긴급차량 접근 시 주변 차량들이 차선 사이에 구조 통로를 만드는 행동으로, 비정상적·위험한 궤적 생성을 유발할 수 있어 SOTIF 시험 대상이다. (arXiv 2407.21569 TC001, FI002)" .
+<http://sotif.ontology/Reversing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/Reversing> <http://www.w3.org/2000/01/rdf-schema#label> "Reversing" .
+<http://sotif.ontology/Reversing> <http://sotif.ontology/description> "타 차량이 후진하는 행동으로, 정지 또는 저속 자차에 대해 실행 가능한 궤적 생성을 어렵게 한다." .
+<http://sotif.ontology/RoadDebris> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/RoadDebris> <http://www.w3.org/2000/01/rdf-schema#label> "RoadDebris" .
+<http://sotif.ontology/RoadDebris> <http://sotif.ontology/description> "도로 위의 일반 낙하물·잔해(TC 목록의 temporary obstacles)." .
+<http://sotif.ontology/Roundabout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/Roundabout> <http://www.w3.org/2000/01/rdf-schema#label> "Roundabout" .
+<http://sotif.ontology/Roundabout> <http://sotif.ontology/description> "원형 교차로로, 진입 시 양보 판단과 곡률 있는 주행 경로, 다른 차량의 의도 예측이 어려운 도로 유형이다." .
+<http://sotif.ontology/RunningRedLight> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/RunningRedLight> <http://www.w3.org/2000/01/rdf-schema#label> "RunningRedLight" .
+<http://sotif.ontology/RunningRedLight> <http://sotif.ontology/description> "타 차량이 적색 신호를 무시하고 교차로에 진입하는 행동으로 측면 충돌 위험이 있다." .
+<http://sotif.ontology/RuralRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/RuralRoad> <http://www.w3.org/2000/01/rdf-schema#label> "RuralRoad" .
+<http://sotif.ontology/RuralRoad> <http://sotif.ontology/description> "교외·농촌 도로로, 차선 표시와 조명이 부족하고 동물 등 예기치 못한 객체가 나타날 수 있는 도로 유형이다." .
+<http://sotif.ontology/SeverelyReducedVisibility> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VisibilityCondition> .
+<http://sotif.ontology/SeverelyReducedVisibility> <http://www.w3.org/2000/01/rdf-schema#label> "SeverelyReducedVisibility" .
+<http://sotif.ontology/SeverelyReducedVisibility> <http://sotif.ontology/description> "가시거리가 극도로 짧아 카메라·라이다의 검출 신뢰도가 크게 떨어져 SOTIF상 위험한 시정 상태이다." .
+<http://sotif.ontology/SlowVehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/SlowVehicle> <http://www.w3.org/2000/01/rdf-schema#label> "SlowVehicle" .
+<http://sotif.ontology/SlowVehicle> <http://sotif.ontology/description> "주변 흐름보다 현저히 느린 차량으로, 자차의 급접근과 추돌 위험을 유발한다." .
+<http://sotif.ontology/Snow> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/Snow> <http://www.w3.org/2000/01/rdf-schema#label> "Snow" .
+<http://sotif.ontology/Snow> <http://sotif.ontology/description> "눈이 내리는 기상 조건으로, 시야와 센서 신호를 저하시키고 노면 마찰을 변화시킨다." .
+<http://sotif.ontology/SnowCoveredMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/SnowCoveredMarking> <http://www.w3.org/2000/01/rdf-schema#label> "SnowCoveredMarking" .
+<http://sotif.ontology/SnowCoveredMarking> <http://sotif.ontology/description> "눈·얼음 등으로 덮여 보이지 않는 차선 표시(TC010d, TC024)." .
+<http://sotif.ontology/SnowCoveredRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/SnowCoveredRoad> <http://www.w3.org/2000/01/rdf-schema#label> "SnowCoveredRoad" .
+<http://sotif.ontology/SnowCoveredRoad> <http://sotif.ontology/description> "눈으로 덮인 노면으로 마찰이 낮고 차선 표시가 가려져 인지와 주행 제어를 모두 어렵게 한다." .
+<http://sotif.ontology/SpeedBump> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/SpeedBump> <http://www.w3.org/2000/01/rdf-schema#label> "SpeedBump" .
+<http://sotif.ontology/SpeedBump> <http://sotif.ontology/description> "저속 주행을 유도하는 과속방지턱로, 인식하지 못하면 급격한 충격이나 불필요한 제동을 유발할 수 있다." .
+<http://sotif.ontology/SpeedLimitSign> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/TrafficControl> .
+<http://sotif.ontology/SpeedLimitSign> <http://www.w3.org/2000/01/rdf-schema#label> "SpeedLimitSign" .
+<http://sotif.ontology/SpeedLimitSign> <http://sotif.ontology/description> "도로 구간의 최고 속도를 지시하는 표지로, 오인식 또는 늦은 인식 시 속도 위반이나 불필요한 제동을 유발할 수 있다." .
+<http://sotif.ontology/SprayFromVehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VisibilityCondition> .
+<http://sotif.ontology/SprayFromVehicle> <http://www.w3.org/2000/01/rdf-schema#label> "SprayFromVehicle" .
+<http://sotif.ontology/SprayFromVehicle> <http://sotif.ontology/description> "앞선 차량이 노면의 물보라나 물안개를 일으켜 센서 시야를 일시적으로 가리는 시정 조건이다." .
+<http://sotif.ontology/StandingWater> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/StandingWater> <http://www.w3.org/2000/01/rdf-schema#label> "StandingWater" .
+<http://sotif.ontology/StandingWater> <http://sotif.ontology/description> "노면에 고인 물로 수막현상(하이드로플레이닝)을 유발해 마찰을 급감시키고 반사를 일으킬 수 있다." .
+<http://sotif.ontology/Stationary> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/EgoState> .
+<http://sotif.ontology/Stationary> <http://www.w3.org/2000/01/rdf-schema#label> "Stationary" .
+<http://sotif.ontology/Stationary> <http://sotif.ontology/description> "자차가 정지해 있는 상태(속도 0)로, 신호 대기나 출발 직전 주변 객체 인식과 의도치 않은 가속 위험을 평가하는 기준 상태이다." .
+<http://sotif.ontology/StopSign> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/TrafficControl> .
+<http://sotif.ontology/StopSign> <http://www.w3.org/2000/01/rdf-schema#label> "StopSign" .
+<http://sotif.ontology/StopSign> <http://sotif.ontology/description> "정지 의무를 알리는 표지로, 미검출 시 교차로에서 정지하지 않아 충돌 위험이 생기는 교통 제어 시설이다." .
+<http://sotif.ontology/Streetlight> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/Streetlight> <http://www.w3.org/2000/01/rdf-schema#label> "Streetlight" .
+<http://sotif.ontology/Streetlight> <http://sotif.ontology/description> "가로등에 의한 국지적 조명으로, 조도 불균일과 반사를 만들어 인식에 영향을 줄 수 있는 조건이다." .
+<http://sotif.ontology/StrongSideWind> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/WeatherCondition> .
+<http://sotif.ontology/StrongSideWind> <http://www.w3.org/2000/01/rdf-schema#label> "StrongSideWind" .
+<http://sotif.ontology/StrongSideWind> <http://sotif.ontology/description> "차량 측면에서 부는 강한 바람으로, 차량 거동과 궤적 추종에 외란을 주어 계획·제어의 SOTIF 한계를 유발할 수 있는 기상 조건이다. (arXiv 2407.21569 TC009, FI008)" .
+<http://sotif.ontology/SuddenBraking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/SuddenBraking> <http://www.w3.org/2000/01/rdf-schema#label> "SuddenBraking" .
+<http://sotif.ontology/SuddenBraking> <http://sotif.ontology/description> "선행 차량이 예고 없이 급제동하는 행동으로 추돌 위험을 높인다." .
+<http://sotif.ontology/TemporaryMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/TemporaryMarking> <http://www.w3.org/2000/01/rdf-schema#label> "TemporaryMarking" .
+<http://sotif.ontology/TemporaryMarking> <http://sotif.ontology/description> "공사 등으로 임시 설치된 차선 표시로, 기존 표시와 달라 인식·해석 혼동을 일으킬 수 있다." .
+<http://sotif.ontology/TemporaryTrafficGuidance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/ConstructionZone> .
+<http://sotif.ontology/TemporaryTrafficGuidance> <http://www.w3.org/2000/01/rdf-schema#label> "TemporaryTrafficGuidance" .
+<http://sotif.ontology/TemporaryTrafficGuidance> <http://sotif.ontology/description> "공사 구간에서 임시 표지·바리케이드 등으로 교통을 유도하는 구간. 지도 layer 2·3에 포함된다(arXiv 2407.21569 S02b,c)." .
+<http://sotif.ontology/TemporaryTrafficSign> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/TrafficControl> .
+<http://sotif.ontology/TemporaryTrafficSign> <http://www.w3.org/2000/01/rdf-schema#label> "TemporaryTrafficSign" .
+<http://sotif.ontology/TemporaryTrafficSign> <http://sotif.ontology/description> "공사 구간 등에 일시적으로 설치되는 표지. 교통 규칙이 갑자기 바뀌는 지점에서 계획기가 실행 가능한 궤적을 찾지 못하거나 제시간에 풀지 못할 수 있다(arXiv 2407.21569 TC015, FI006, FI010)." .
+<http://sotif.ontology/TireFragment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/TireFragment> <http://www.w3.org/2000/01/rdf-schema#label> "TireFragment" .
+<http://sotif.ontology/TireFragment> <http://sotif.ontology/description> "파손된 타이어 조각으로, 노면과 색이 비슷하고 낮아 감지가 어렵고 회피 시 위험을 만든다." .
+<http://sotif.ontology/TrackingLoss> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/TrackingLoss> <http://www.w3.org/2000/01/rdf-schema#label> "TrackingLoss" .
+<http://sotif.ontology/TrackingLoss> <http://sotif.ontology/description> "이전에 감지한 객체를 연속 프레임에서 놓치거나 식별자를 잃는 기능 불충분성으로, 가려진 후 재등장하는 객체에 대한 대응이 실패할 수 있다." .
+<http://sotif.ontology/TrafficCone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/StaticObject> .
+<http://sotif.ontology/TrafficCone> <http://www.w3.org/2000/01/rdf-schema#label> "TrafficCone" .
+<http://sotif.ontology/TrafficCone> <http://sotif.ontology/description> "공사나 차선 통제용 라바콘으로, 작고 불규칙하게 배치되어 인식 누락이나 경로 계획 오류를 유발할 수 있다." .
+<http://sotif.ontology/TrafficLight> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/TrafficControl> .
+<http://sotif.ontology/TrafficLight> <http://www.w3.org/2000/01/rdf-schema#label> "TrafficLight" .
+<http://sotif.ontology/TrafficLight> <http://sotif.ontology/description> "교차로 등에서 통행권을 신호로 제어하는 신호등으로, 눈부심·가림·오인식에 따라 신호 위반이나 급제동을 유발할 수 있다." .
+<http://sotif.ontology/TrafficRuleViolation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/TrafficRuleViolation> <http://www.w3.org/2000/01/rdf-schema#label> "TrafficRuleViolation" .
+<http://sotif.ontology/TrafficRuleViolation> <http://sotif.ontology/description> "타 교통 참여자가 통행 우선권 등 교통 규칙을 엄격히 지키지 않는 행동으로, 규칙 기반 가정을 깨뜨려 과도한 보수적 주행이나 교착을 유발한다. (arXiv 2407.21569 TC011, FI005)" .
+<http://sotif.ontology/TrafficSignRecognition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/PerceptionFunction> .
+<http://sotif.ontology/TrafficSignRecognition> <http://www.w3.org/2000/01/rdf-schema#label> "TrafficSignRecognition" .
+<http://sotif.ontology/TrafficSignRecognition> <http://sotif.ontology/description> "속도제한 표지, 정지 표지 등 교통 표지를 인식하여 교통 규칙 준수를 지원하는 기능이다." .
+<http://sotif.ontology/TunnelEntry> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/TunnelEntry> <http://www.w3.org/2000/01/rdf-schema#label> "TunnelEntry" .
+<http://sotif.ontology/TunnelEntry> <http://sotif.ontology/description> "터널 진입 시 밝은 곳에서 어두운 곳으로 급변하는 조도로 카메라 노출 적응이 지연되는 조건이다." .
+<http://sotif.ontology/TunnelExit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/TunnelExit> <http://www.w3.org/2000/01/rdf-schema#label> "TunnelExit" .
+<http://sotif.ontology/TunnelExit> <http://sotif.ontology/description> "터널 출구에서 어두운 곳에서 밝은 곳으로 급변해 카메라가 과노출되고 차선 인식이 어려워지는 조건이다." .
+<http://sotif.ontology/Ultrasonic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Sensor> .
+<http://sotif.ontology/Ultrasonic> <http://www.w3.org/2000/01/rdf-schema#label> "Ultrasonic" .
+<http://sotif.ontology/Ultrasonic> <http://sotif.ontology/description> "초음파로 근거리 장애물을 감지하는 센서로, 주차·저속 상황에 쓰이지만 탐지 범위가 짧다." .
+<http://sotif.ontology/UnevenRoadSurface> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/UnevenRoadSurface> <http://www.w3.org/2000/01/rdf-schema#label> "UnevenRoadSurface" .
+<http://sotif.ontology/UnevenRoadSurface> <http://sotif.ontology/description> "바퀴자국·노면 융기 등으로 고르지 않은 노면. 생성 궤적이 주행 불가능해질 수 있다(arXiv 2407.21569 TC008d,e, FI007)." .
+<http://sotif.ontology/UnintendedAcceleration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/UnintendedAcceleration> <http://www.w3.org/2000/01/rdf-schema#label> "UnintendedAcceleration" .
+<http://sotif.ontology/UnintendedAcceleration> <http://sotif.ontology/description> "시스템이 의도하지 않게 가속하여 안전거리를 침해하는 위험 이벤트이다." .
+<http://sotif.ontology/UnnecessaryBraking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/HazardousEvent> .
+<http://sotif.ontology/UnnecessaryBraking> <http://www.w3.org/2000/01/rdf-schema#label> "UnnecessaryBraking" .
+<http://sotif.ontology/UnnecessaryBraking> <http://sotif.ontology/description> "실제 위험이 없는데 오탐 등으로 불필요하게 제동하는 위험 이벤트로, 후방 추돌 위험을 유발한다." .
+<http://sotif.ontology/UnsignaledLaneChange> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/UnsignaledLaneChange> <http://www.w3.org/2000/01/rdf-schema#label> "UnsignaledLaneChange" .
+<http://sotif.ontology/UnsignaledLaneChange> <http://sotif.ontology/description> "방향지시등 없이 차선을 변경하는 행동으로 의도 예측과 움직임 예측을 어렵게 한다." .
+<http://sotif.ontology/UrbanRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadType> .
+<http://sotif.ontology/UrbanRoad> <http://www.w3.org/2000/01/rdf-schema#label> "UrbanRoad" .
+<http://sotif.ontology/UrbanRoad> <http://sotif.ontology/description> "도심 도로로, VRU, 주차 차량, 신호 및 복잡한 교통이 밀집해 가림과 오검출 가능성이 높은 도로 유형이다." .
+<http://sotif.ontology/VelocityEstimationError> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/FunctionalInsufficiency> .
+<http://sotif.ontology/VelocityEstimationError> <http://www.w3.org/2000/01/rdf-schema#label> "VelocityEstimationError" .
+<http://sotif.ontology/VelocityEstimationError> <http://sotif.ontology/description> "객체의 속도·진행 방향 추정값에 오차가 생기는 인식 결과. 회귀 품질은 SOTIF 관련 원치 않는 거동으로 모델링할 수 있다(arXiv 2303.04029 §II-A)." .
+<http://sotif.ontology/WetLeafCoveredRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/WetLeafCoveredRoad> <http://www.w3.org/2000/01/rdf-schema#label> "WetLeafCoveredRoad" .
+<http://sotif.ontology/WetLeafCoveredRoad> <http://sotif.ontology/description> "젖은 노면 위에 낙엽이 쌓여 미끄러운 노면으로, 제동·조향 시 마찰이 저하되어 계획된 궤적이 주행 불가능해질 수 있다. (arXiv 2407.21569 TC026a)" .
+<http://sotif.ontology/WetRoad> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/RoadSurfaceCondition> .
+<http://sotif.ontology/WetRoad> <http://www.w3.org/2000/01/rdf-schema#label> "WetRoad" .
+<http://sotif.ontology/WetRoad> <http://sotif.ontology/description> "젖은 노면으로 마찰이 감소하고 빛 반사가 증가해 센서 검출률(FN/TP)에 영향을 줄 수 있다." .
+<http://sotif.ontology/WetRoadReflection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LightingCondition> .
+<http://sotif.ontology/WetRoadReflection> <http://www.w3.org/2000/01/rdf-schema#label> "WetRoadReflection" .
+<http://sotif.ontology/WetRoadReflection> <http://sotif.ontology/description> "젖은 노면 등에서 생기는 반사. 노면 상태와 조도가 반사에 영향을 주고, 반사는 TP/FN 비율에 영향을 준다(arXiv 2303.04029 명제 3)." .
+<http://sotif.ontology/WheelchairUser> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/VRU> .
+<http://sotif.ontology/WheelchairUser> <http://www.w3.org/2000/01/rdf-schema#label> "WheelchairUser" .
+<http://sotif.ontology/WheelchairUser> <http://sotif.ontology/description> "휠체어 이용자로, 앉은 자세에서 낮은 높이와 특이한 형상 때문에 검출 누락 및 오분류 위험이 있는 VRU이다." .
+<http://sotif.ontology/WornMarking> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/LaneMarking> .
+<http://sotif.ontology/WornMarking> <http://www.w3.org/2000/01/rdf-schema#label> "WornMarking" .
+<http://sotif.ontology/WornMarking> <http://sotif.ontology/description> "마모·파손되어 끊기거나 희미해진 차선 표시 상태로, 인식 성능을 저하시킨다." .
+<http://sotif.ontology/WrongWayDriving> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/DrivingBehavior> .
+<http://sotif.ontology/WrongWayDriving> <http://www.w3.org/2000/01/rdf-schema#label> "WrongWayDriving" .
+<http://sotif.ontology/WrongWayDriving> <http://sotif.ontology/description> "타 차량이 역주행하는 행동으로 정면충돌 위험이 있으며 전용 대응 모드가 필요하다." .
+<http://sotif.ontology/WrongWayVehicle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sotif.ontology/Vehicle> .
+<http://sotif.ontology/WrongWayVehicle> <http://www.w3.org/2000/01/rdf-schema#label> "WrongWayVehicle" .
+<http://sotif.ontology/WrongWayVehicle> <http://sotif.ontology/description> "역주행 차량(arXiv 2407.21569 TC006). 계획기가 실행 가능한 궤적을 계산하지 못할 수 있다(FI006)." .
+<http://sotif.ontology/AbsentMarking> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/ActiveConstruction> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/ActiveConstruction> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/ActiveConstruction> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/Area1_KnownSafe> <http://sotif.ontology/conflicts_with> <http://sotif.ontology/Area2_KnownUnsafe> .
+<http://sotif.ontology/Area3_UnknownUnsafe> <http://sotif.ontology/conflicts_with> <http://sotif.ontology/Area4_UnknownSafe> .
+<http://sotif.ontology/Bus> <http://sotif.ontology/occludes> <http://sotif.ontology/AdultPedestrian> .
+<http://sotif.ontology/CarTransporterTrailer> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/ChildPedestrian> <http://sotif.ontology/degrades> <http://sotif.ontology/ObjectDetection> .
+<http://sotif.ontology/ClearWeather> <http://sotif.ontology/has_property> <http://sotif.ontology/Sensor> .
+<http://sotif.ontology/CutIn> <http://sotif.ontology/triggers> <http://sotif.ontology/RearEndCollision> .
+<http://sotif.ontology/CutIn> <http://sotif.ontology/triggers> <http://sotif.ontology/UnnecessaryBraking> .
+<http://sotif.ontology/DamagedVehicleOnShoulder> <http://sotif.ontology/located_on> <http://sotif.ontology/Highway> .
+<http://sotif.ontology/DamagedVehicleOnShoulder> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/DirectSunGlare> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/DirectSunGlare> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/DirectSunGlare> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/DoorOpening> <http://sotif.ontology/triggers> <http://sotif.ontology/CollisionWithVRU> .
+<http://sotif.ontology/EScooterRider> <http://sotif.ontology/degrades> <http://sotif.ontology/ObjectDetection> .
+<http://sotif.ontology/FalseNegative> <http://sotif.ontology/triggers> <http://sotif.ontology/CollisionWithVRU> .
+<http://sotif.ontology/FalseNegative> <http://sotif.ontology/triggers> <http://sotif.ontology/RearEndCollision> .
+<http://sotif.ontology/FalsePositive> <http://sotif.ontology/triggers> <http://sotif.ontology/UnnecessaryBraking> .
+<http://sotif.ontology/Fog> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/Fog> <http://sotif.ontology/degrades> <http://sotif.ontology/Lidar> .
+<http://sotif.ontology/Fog> <http://sotif.ontology/triggers> <http://sotif.ontology/LateDetection> .
+<http://sotif.ontology/FullOcclusion> <http://sotif.ontology/degrades> <http://sotif.ontology/Lidar> .
+<http://sotif.ontology/FullOcclusion> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/HeavyFogVisibility> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/HeavyFogVisibility> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/HeavyFogVisibility> <http://sotif.ontology/degrades> <http://sotif.ontology/Lidar> .
+<http://sotif.ontology/HeavyRain> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/HeavyRain> <http://sotif.ontology/degrades> <http://sotif.ontology/Lidar> .
+<http://sotif.ontology/HeavyRain> <http://sotif.ontology/has_property> <http://sotif.ontology/StandingWater> .
+<http://sotif.ontology/HeavyRain> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/HeavyRain> <http://sotif.ontology/triggers> <http://sotif.ontology/SprayFromVehicle> .
+<http://sotif.ontology/HighSpeed> <http://sotif.ontology/requires> <http://sotif.ontology/ObjectDetection> .
+<http://sotif.ontology/HighSpeed> <http://sotif.ontology/triggers> <http://sotif.ontology/RearEndCollision> .
+<http://sotif.ontology/Highway> <http://sotif.ontology/has_property> <http://sotif.ontology/HighSpeed> .
+<http://sotif.ontology/Highway> <http://sotif.ontology/requires> <http://sotif.ontology/HighSpeed> .
+<http://sotif.ontology/IcyRoad> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/Jaywalking> <http://sotif.ontology/triggers> <http://sotif.ontology/CollisionWithVRU> .
+<http://sotif.ontology/LargeTruck> <http://sotif.ontology/occludes> <http://sotif.ontology/AdultPedestrian> .
+<http://sotif.ontology/LargeTruck> <http://sotif.ontology/occludes> <http://sotif.ontology/ChildPedestrian> .
+<http://sotif.ontology/LargeTruck> <http://sotif.ontology/occludes> <http://sotif.ontology/Cyclist> .
+<http://sotif.ontology/LargeTruck> <http://sotif.ontology/occludes> <http://sotif.ontology/Motorcycle> .
+<http://sotif.ontology/LateDetection> <http://sotif.ontology/triggers> <http://sotif.ontology/RearEndCollision> .
+<http://sotif.ontology/Lidar> <http://sotif.ontology/mitigates> <http://sotif.ontology/DirectSunGlare> .
+<http://sotif.ontology/Lidar> <http://sotif.ontology/mitigates> <http://sotif.ontology/NighttimeDark> .
+<http://sotif.ontology/LowLightDusk> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/LowSpeed> <http://sotif.ontology/requires> <http://sotif.ontology/ObjectDetection> .
+<http://sotif.ontology/LowSunAngle> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/Manhole> <http://sotif.ontology/triggers> <http://sotif.ontology/UnnecessaryBraking> .
+<http://sotif.ontology/MisclassificationError> <http://sotif.ontology/triggers> <http://sotif.ontology/CollisionWithVRU> .
+<http://sotif.ontology/MisleadingMarking> <http://sotif.ontology/triggers> <http://sotif.ontology/MisclassificationError> .
+<http://sotif.ontology/Motorcycle> <http://sotif.ontology/degrades> <http://sotif.ontology/Radar> .
+<http://sotif.ontology/NighttimeDark> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/NighttimeDark> <http://sotif.ontology/degrades> <http://sotif.ontology/ObjectDetection> .
+<http://sotif.ontology/NighttimeDark> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/OffRamp> <http://sotif.ontology/located_on> <http://sotif.ontology/Highway> .
+<http://sotif.ontology/OilSpillage> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/OnRamp> <http://sotif.ontology/located_on> <http://sotif.ontology/Highway> .
+<http://sotif.ontology/OncomingHeadlight> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/OverlappingMarking> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/ParkedVehicle> <http://sotif.ontology/occludes> <http://sotif.ontology/ChildPedestrian> .
+<http://sotif.ontology/ParkedVehicle> <http://sotif.ontology/occludes> <http://sotif.ontology/Cyclist> .
+<http://sotif.ontology/ParkingLot> <http://sotif.ontology/requires> <http://sotif.ontology/LowSpeed> .
+<http://sotif.ontology/PartialOcclusion> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/PartialOcclusion> <http://sotif.ontology/triggers> <http://sotif.ontology/LateDetection> .
+<http://sotif.ontology/Radar> <http://sotif.ontology/mitigates> <http://sotif.ontology/Fog> .
+<http://sotif.ontology/Radar> <http://sotif.ontology/mitigates> <http://sotif.ontology/NighttimeDark> .
+<http://sotif.ontology/Radar> <http://sotif.ontology/triggers> <http://sotif.ontology/LateDetection> .
+<http://sotif.ontology/RapidIlluminationChange> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/RearEndedByTrailingVehicle> <http://sotif.ontology/requires> <http://sotif.ontology/SuddenBraking> .
+<http://sotif.ontology/ReducedVisibility> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/RoadDebris> <http://sotif.ontology/degrades> <http://sotif.ontology/FreespaceDetection> .
+<http://sotif.ontology/RunningRedLight> <http://sotif.ontology/triggers> <http://sotif.ontology/HeadOnCollision> .
+<http://sotif.ontology/Snow> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/Snow> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/Snow> <http://sotif.ontology/degrades> <http://sotif.ontology/Lidar> .
+<http://sotif.ontology/SnowCoveredMarking> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/SnowCoveredMarking> <http://sotif.ontology/requires> <http://sotif.ontology/Snow> .
+<http://sotif.ontology/SnowCoveredRoad> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/SpeedBump> <http://sotif.ontology/triggers> <http://sotif.ontology/UnnecessaryBraking> .
+<http://sotif.ontology/StrongSideWind> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/SuddenBraking> <http://sotif.ontology/triggers> <http://sotif.ontology/RearEndCollision> .
+<http://sotif.ontology/TemporaryMarking> <http://sotif.ontology/conflicts_with> <http://sotif.ontology/ClearMarking> .
+<http://sotif.ontology/TunnelEntry> <http://sotif.ontology/degrades> <http://sotif.ontology/Camera> .
+<http://sotif.ontology/TunnelEntry> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/UnevenRoadSurface> <http://sotif.ontology/triggers> <http://sotif.ontology/LaneDeparture> .
+<http://sotif.ontology/UrbanRoad> <http://sotif.ontology/requires> <http://sotif.ontology/MediumSpeed> .
+<http://sotif.ontology/WetRoad> <http://sotif.ontology/conflicts_with> <http://sotif.ontology/DryRoad> .
+<http://sotif.ontology/WetRoad> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/WetRoad> <http://sotif.ontology/degrades> <http://sotif.ontology/Lidar> .
+<http://sotif.ontology/WetRoad> <http://sotif.ontology/degrades> <http://sotif.ontology/Radar> .
+<http://sotif.ontology/WetRoadReflection> <http://sotif.ontology/requires> <http://sotif.ontology/WetRoad> .
+<http://sotif.ontology/WetRoadReflection> <http://sotif.ontology/triggers> <http://sotif.ontology/FalseNegative> .
+<http://sotif.ontology/WornMarking> <http://sotif.ontology/degrades> <http://sotif.ontology/LaneDetection> .
+<http://sotif.ontology/WrongWayDriving> <http://sotif.ontology/triggers> <http://sotif.ontology/HeadOnCollision> .
+<http://sotif.ontology/WrongWayVehicle> <http://sotif.ontology/performs> <http://sotif.ontology/WrongWayDriving> .
