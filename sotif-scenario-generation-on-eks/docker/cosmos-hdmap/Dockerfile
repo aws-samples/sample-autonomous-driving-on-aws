@@ -1,7 +1,7 @@
 # Cosmos-Drive-Dreams hdmap condition video on CPU (Mesa software EGL). Build context: repository root.
 #   docker build -f docker/cosmos-hdmap/Dockerfile -t drive-atlas/cosmos-hdmap:<tag> .
 # The toolkit (Apache-2.0) is fetched at build time at a pinned commit and not redistributed here.
-FROM public.ecr.aws/docker/library/python:3.12-slim-bookworm
+FROM public.ecr.aws/docker/library/python:3.12-slim-trixie
 
 ARG TOOLKIT_REPO=https://github.com/nv-tlabs/Cosmos-Drive-Dreams
 ARG TOOLKIT_COMMIT=915f79f
